@@ -16,21 +16,27 @@ namespace Insurance.Api.Controllers
             BusinessRules.GetProductType(ProductApi, productId, ref toInsure);
             BusinessRules.GetSalesPrice(ProductApi, productId, ref toInsure);
 
+            if (!toInsure.ProductTypeHasInsurance)
+            {
+                toInsure.InsuranceValue = 0;
+                return toInsure;
+            }
+
             float insurance = 0f;
 
             if (toInsure.SalesPrice < 500)
-                toInsure.InsuranceValue = 0;
-            else
-            {
-                if (toInsure.SalesPrice > 500 && toInsure.SalesPrice < 2000)
-                    if (toInsure.ProductTypeHasInsurance)
-                        toInsure.InsuranceValue += 1000;
-                if (toInsure.SalesPrice >= 2000)
-                    if (toInsure.ProductTypeHasInsurance)
-                        toInsure.InsuranceValue += 2000;
-                if (toInsure.ProductTypeName == "Laptops" || toInsure.ProductTypeName == "Smartphones" && toInsure.ProductTypeHasInsurance)
-                    toInsure.InsuranceValue += 500;
-            }
+                insurance += 0;
+
+            if (toInsure.SalesPrice > 500 && toInsure.SalesPrice < 2000)
+                insurance += 1000;
+
+            if (toInsure.SalesPrice >= 2000)
+                insurance += 2000;
+
+            if (toInsure.ProductTypeName == "Laptops" || toInsure.ProductTypeName == "Smartphones")
+                insurance += 500;
+
+            toInsure.InsuranceValue = insurance;
 
             return toInsure;
         }
