@@ -78,7 +78,26 @@ namespace Insurance.Tests
         }
 
         [Fact]
-        public void GivenSalesPriceIsLessThan500EurosProductType2_ShouldAdd500EurosToInsuranceCost()
+        public void GivenProductTypeCanBeInsuredFalse_ShouldAdd0EurosToInsuranceCost()
+        {
+            const float expectedInsuranceValue = 0;
+
+            var dto = new HomeController.InsuranceDto
+            {
+                ProductId = 5,
+            };
+            var sut = new HomeController();
+
+            var result = sut.CalculateInsurance(dto);
+
+            Assert.Equal(
+                expected: expectedInsuranceValue,
+                actual: result.InsuranceValue
+            );
+        }
+
+        [Fact]
+        public void GivenSalesPriceIsLessThan500EurosProductTypeSmartPhone_ShouldAdd500EurosToInsuranceCost()
         {
             const float expectedInsuranceValue = 500;
 
@@ -149,6 +168,13 @@ namespace Insurance.Tests
                             productTypeId = 2,
                             salesPrice = 200
                             }
+                },
+                { 5, new{
+                            id = 5,
+                            name = "Test Product with price 100 productTypeId 3 CanBeInsured False",
+                            productTypeId = 3,
+                            salesPrice = 100
+                            }
                 }
             };
 
@@ -182,6 +208,12 @@ namespace Insurance.Tests
                                                        id = 2,
                                                        name = "SmartPhones",
                                                        canBeInsured = true
+                                                   },
+                                                   new
+                                                   {
+                                                       id = 3,
+                                                       name = "CanBeInsured False Simple Type",
+                                                       canBeInsured = false
                                                    }
                                                };
                             return context.Response.WriteAsync(JsonConvert.SerializeObject(productTypes));
