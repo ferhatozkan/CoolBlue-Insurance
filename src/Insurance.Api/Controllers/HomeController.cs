@@ -1,7 +1,10 @@
-using System.Net;
-using System.Net.Http;
+using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Insurance.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 
 namespace Insurance.Api.Controllers
 {
@@ -23,22 +26,31 @@ namespace Insurance.Api.Controllers
             }
 
             float insurance = 0f;
+            foreach (var rule in InsuranceRuleConstants.Ranges) 
+            {
+                insurance += CalculateInsuranceRule(rule, toInsure.SalesPrice);
+            };
 
-            if (toInsure.SalesPrice < 500)
-                insurance += 0;
-
-            if (toInsure.SalesPrice > 500 && toInsure.SalesPrice < 2000)
-                insurance += 1000;
-
-            if (toInsure.SalesPrice >= 2000)
-                insurance += 2000;
-
-            if (toInsure.ProductTypeName == "Laptops" || toInsure.ProductTypeName == "Smartphones")
+            if (Enum.IsDefined(typeof(SpecialProductType), toInsure.ProductTypeName))
                 insurance += 500;
 
             toInsure.InsuranceValue = insurance;
 
             return toInsure;
+        }
+
+        private float CalculateInsuranceRule(InsuranceRule rule, float salesPrice)
+        {
+            if (rule.MaxSalesPrice == null && rule.MinSalesPrice == null)
+                return 0;
+
+            if((rule.MaxSalesPrice == null || salesPrice < rule.MaxSalesPrice)
+                && (rule.MinSalesPrice == null || salesPrice >= rule.MinSalesPrice))
+            {
+                return rule.InsurancePrice;
+            }
+
+            return 0;
         }
 
         public class InsuranceDto

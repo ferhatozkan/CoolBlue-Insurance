@@ -24,6 +24,7 @@ namespace Insurance.Tests
         [InlineData(1, 0)]
         [InlineData(2, 1000)]
         [InlineData(3, 2000)]
+        [InlineData(9, 1000)]
         public void GivenProductTypeNotSpecial_ShouldAddExpectedEurosToInsuranceCost(int productId, float expectedInsuranceValue)
         {
             var dto = new HomeController.InsuranceDto
@@ -161,6 +162,13 @@ namespace Insurance.Tests
                             name = "Test Product with price 2100 productTypeId CanBeInsured False",
                             productTypeId = 3,
                             salesPrice = 2100
+                            }
+                },
+                { 9, new{
+                            id = 9,
+                            name = "Test Product with price 500 productTypeId NotSpecial",
+                            productTypeId = 1,
+                            salesPrice = 500
                             }
                 }
             };
