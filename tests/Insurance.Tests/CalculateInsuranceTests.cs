@@ -20,14 +20,15 @@ namespace Insurance.Tests
             _fixture = fixture;
         }
 
-        [Fact]
-        public void GivenSalesPriceBetween500And2000EurosProductType1_ShouldAdd1000EurosToInsuranceCost()
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(2, 1000)]
+        [InlineData(3, 2000)]
+        public void GivenProductTypeNotSpecial_ShouldAddExpectedEurosToInsuranceCost(int productId, float expectedInsuranceValue)
         {
-            const float expectedInsuranceValue = 1000;
-
             var dto = new HomeController.InsuranceDto
             {
-                ProductId = 1,
+                ProductId = productId,
             };
             var sut = new HomeController();
 
@@ -39,71 +40,36 @@ namespace Insurance.Tests
             );
         }
 
-        [Fact]
-        public void GivenSalesPriceLessThan500EurosProductType1_ShouldAdd0EurosToInsuranceCost()
+        [Theory]
+        [InlineData(4, 500)]
+        [InlineData(5, 1500)]
+        [InlineData(6, 2500)]
+        public void GivenProductTypeSpecial_ShouldAddExpectedEurosToInsuranceCost(int productId, float expectedInsuranceValue)
+        {
+            var dto = new HomeController.InsuranceDto
+            {
+                ProductId = productId,
+            };
+            var sut = new HomeController();
+
+            var result = sut.CalculateInsurance(dto);
+
+            Assert.Equal(
+                expected: expectedInsuranceValue,
+                actual: result.InsuranceValue
+            );
+        }
+
+        [Theory]
+        [InlineData(7)]
+        [InlineData(8)]
+        public void GivenProductTypeCanBeInsuredFalse_ShouldAdd0EurosToInsuranceCost(int productId)
         {
             const float expectedInsuranceValue = 0;
 
             var dto = new HomeController.InsuranceDto
             {
-                ProductId = 2,
-            };
-            var sut = new HomeController();
-
-            var result = sut.CalculateInsurance(dto);
-
-            Assert.Equal(
-                expected: expectedInsuranceValue,
-                actual: result.InsuranceValue
-            );
-        }
-
-        [Fact]
-        public void GivenSalesPriceIsGreaterThan2000EurosProductType1_ShouldAdd2000EurosToInsuranceCost()
-        {
-            const float expectedInsuranceValue = 2000;
-
-            var dto = new HomeController.InsuranceDto
-            {
-                ProductId = 3,
-            };
-            var sut = new HomeController();
-
-            var result = sut.CalculateInsurance(dto);
-
-            Assert.Equal(
-                expected: expectedInsuranceValue,
-                actual: result.InsuranceValue
-            );
-        }
-
-        [Fact]
-        public void GivenProductTypeCanBeInsuredFalse_ShouldAdd0EurosToInsuranceCost()
-        {
-            const float expectedInsuranceValue = 0;
-
-            var dto = new HomeController.InsuranceDto
-            {
-                ProductId = 5,
-            };
-            var sut = new HomeController();
-
-            var result = sut.CalculateInsurance(dto);
-
-            Assert.Equal(
-                expected: expectedInsuranceValue,
-                actual: result.InsuranceValue
-            );
-        }
-
-        [Fact]
-        public void GivenSalesPriceIsLessThan500EurosProductTypeSmartPhone_ShouldAdd500EurosToInsuranceCost()
-        {
-            const float expectedInsuranceValue = 500;
-
-            var dto = new HomeController.InsuranceDto
-            {
-                ProductId = 4,
+                ProductId = productId,
             };
             var sut = new HomeController();
 
@@ -143,37 +109,58 @@ namespace Insurance.Tests
             {
                 { 1, new{
                             id = 1,
-                            name = "Test Product with price 500 productTypeId 1",
-                            productTypeId = 1,
-                            salesPrice = 750
-                            }
-                },
-                { 2, new{
-                            id = 2,
-                            name = "Test Product with price 300 productTypeId 1",
+                            name = "Test Product with price 300 productTypeId NotSpecial",
                             productTypeId = 1,
                             salesPrice = 300
                             }
                 },
+                { 2, new{
+                            id = 2,
+                            name = "Test Product with price 700 productTypeId NotSpecial",
+                            productTypeId = 1,
+                            salesPrice = 700
+                            }
+                },
                 { 3, new{
                             id = 3,
-                            name = "Test Product with price 2200 productTypeId 1",
+                            name = "Test Product with price 2200 productTypeId NotSpecial",
                             productTypeId = 1,
                             salesPrice = 2200
                             }
                 },
                 { 4, new{
                             id = 4,
-                            name = "Test Product with price 200 productTypeId 2",
+                            name = "Test Product with price 200 productTypeId special",
                             productTypeId = 2,
                             salesPrice = 200
                             }
                 },
                 { 5, new{
                             id = 5,
-                            name = "Test Product with price 100 productTypeId 3 CanBeInsured False",
+                            name = "Test Product with price 600 productTypeId special",
+                            productTypeId = 2,
+                            salesPrice = 600
+                            }
+                },
+                { 6, new{
+                            id = 6,
+                            name = "Test Product with price 2000 productTypeId special",
+                            productTypeId = 2,
+                            salesPrice = 2000
+                            }
+                },
+                { 7, new{
+                            id = 7,
+                            name = "Test Product with price 100 productTypeId CanBeInsured False",
                             productTypeId = 3,
                             salesPrice = 100
+                            }
+                },
+                { 8, new{
+                            id = 8,
+                            name = "Test Product with price 2100 productTypeId CanBeInsured False",
+                            productTypeId = 3,
+                            salesPrice = 2100
                             }
                 }
             };
