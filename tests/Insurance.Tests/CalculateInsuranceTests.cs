@@ -193,7 +193,7 @@ namespace Insurance.Tests
                                                    new
                                                    {
                                                        id = 2,
-                                                       name = "SmartPhones",
+                                                       name = "Smartphones",
                                                        canBeInsured = true
                                                    },
                                                    new
