@@ -23,6 +23,11 @@ namespace Insurance.Api.Repository
             return await _dataContext.SurchargeRates.FindAsync(id);
         }
 
+        public async Task<SurchargeRate> GetByProductTypeIdAsync(int productTypeId)
+        {
+            return await _dataContext.SurchargeRates.FirstOrDefaultAsync(sr => sr.ProductTypeId == productTypeId);
+        }
+
         public async Task CreateAsync(SurchargeRate surchargeRate)
         {
             await _dataContext.SurchargeRates.AddAsync(surchargeRate);

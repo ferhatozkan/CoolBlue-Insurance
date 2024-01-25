@@ -8,6 +8,7 @@ namespace Insurance.Api.Repository
     {
         Task<List<SurchargeRate>> GetAllAsync();
         Task<SurchargeRate> GetByIdAsync(int id);
+        Task<SurchargeRate> GetByProductTypeIdAsync(int productTypeId);
         Task CreateAsync(SurchargeRate surchargeRate);
         Task SaveAsync();
         Task DeleteByIdAsync(int id);
