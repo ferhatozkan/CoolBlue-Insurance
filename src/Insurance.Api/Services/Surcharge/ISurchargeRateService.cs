@@ -7,10 +7,10 @@ namespace Insurance.Api.Services.Surcharge
 {
     public interface ISurchargeRateService
     {
-        Task<List<SurchargeRateDto>> GetAllSurchargeRates();
-        Task<SurchargeRateDto> GetSurchargeRateById(int id);
-        Task DeleteSurchargeRateById(int id);
-        Task<SurchargeRateDto> CreateSurchargeRate(CreateSurchargeRateRequest request);
-        Task<SurchargeRateDto> UpdateSurchargeRateById(int id, UpdateSurchargeRateRequest request);
+        Task<List<SurchargeRateDto>> GetAll();
+        Task<SurchargeRateDto> GetById(int id);
+        Task DeleteById(int id);
+        Task<SurchargeRateDto> Create(CreateSurchargeRateRequest request);
+        Task<SurchargeRateDto> UpdateById(int id, UpdateSurchargeRateRequest request);
     }
 }

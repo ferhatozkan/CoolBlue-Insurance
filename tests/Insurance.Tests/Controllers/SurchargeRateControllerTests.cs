@@ -11,13 +11,13 @@ using Insurance.Api.Models.Request;
 
 namespace Insurance.Tests.Controllers
 {
-    public class SurchargeRateControllerTest
+    public class SurchargeRateControllerTests
     {
 
         private Mock<ISurchargeRateService> _surchargeRateService;
         private SurchargeRateController _surchargeRateController;
 
-        public SurchargeRateControllerTest()
+        public SurchargeRateControllerTests()
         {
             _surchargeRateService = new Mock<ISurchargeRateService>();
             _surchargeRateController = new SurchargeRateController(_surchargeRateService.Object);
