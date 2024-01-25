@@ -9,7 +9,7 @@ namespace Insurance.Api.Clients
         public static IServiceCollection AddClients(this IServiceCollection services, IConfiguration configurationManager) 
         {
             services.Configure<ProductApiClientConfiguration>(configurationManager.GetSection("ProductApi"));
-            services.AddSingleton<ProductApiClient>();
+            services.AddScoped<IProductApiClient, ProductApiClient>();
             return services;
         }
     }

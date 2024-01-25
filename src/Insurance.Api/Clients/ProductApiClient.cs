@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace Insurance.Api.Clients
 {
-    public class ProductApiClient
+    public class ProductApiClient : IProductApiClient
     {
         private readonly HttpClient _client;
         public ProductApiClient(IOptions<ProductApiClientConfiguration> configuration, IHttpClientFactory httpClientFactory)

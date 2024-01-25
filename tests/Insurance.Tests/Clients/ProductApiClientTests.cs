@@ -16,7 +16,7 @@ namespace Insurance.Tests.Clients
     {
         private ProductApiClientConfiguration _productApiClientConfiguration;
 
-        private ProductApiClient _productApiClient { get; set; }
+        private IProductApiClient _productApiClient { get; set; }
 
         private Mock<IHttpClientFactory> _httpClientFactoryMock;
 
