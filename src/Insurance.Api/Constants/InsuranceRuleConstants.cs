@@ -5,24 +5,29 @@ namespace Insurance.Api.Constants
 {
     public class InsuranceRuleConstants
     {
-        public static List<InsuranceRule> Ranges => new()
+        public static List<ProductInsuranceRule> ProductInsuranceRules => new()
             {
-                new InsuranceRule()
+                new ProductInsuranceRule()
                 {
                     MaxSalesPrice = 500,
                     InsurancePrice = 0
                 },
-                new InsuranceRule()
+                new ProductInsuranceRule()
                 {
                     MaxSalesPrice = 2000,
                     MinSalesPrice = 500,
                     InsurancePrice = 1000
                 },
-                new InsuranceRule()
+                new ProductInsuranceRule()
                 {
                     MinSalesPrice = 2000,
                     InsurancePrice = 2000
                 }
             };
+
+        public static Dictionary<FrequentlyLostProductType, double> CartInsuranceRules => new()
+        {
+            {FrequentlyLostProductType.DigitalCamera, 500} 
+        };
     }
 }

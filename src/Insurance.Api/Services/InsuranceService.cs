@@ -31,8 +31,26 @@ namespace Insurance.Api.Services
                 var insurace = await CalculateInsurance(productId);
                 cartInsurance.Products.Add(insurace);
             }
-            cartInsurance.TotalInsuranceCost = cartInsurance.Products.Sum(i => i.InsuranceCost);
+
+            var productsInsurance = cartInsurance.Products.Sum(i => i.InsuranceCost);
+
+            var cartProductTypes = cartInsurance.Products.Select(p => p.ProductTypeId).Distinct().ToList();
+            var frequenlyLostProductsInsurance = ApplyCartInsurance(cartProductTypes);
+
+            cartInsurance.TotalInsuranceCost = productsInsurance + frequenlyLostProductsInsurance;
+
             return cartInsurance;
+        }
+
+        private double ApplyCartInsurance(List<int> cartProductTypes)
+        {
+            double insuranceCost = 0;
+            foreach (var cartProductType in cartProductTypes)
+            {
+                var cartInsuranceCost = InsuranceRuleConstants.CartInsuranceRules.GetValueOrDefault((FrequentlyLostProductType) cartProductType);
+                insuranceCost += cartInsuranceCost;
+            }
+            return insuranceCost;
         }
 
         private async Task<InsuranceDto> CalculateInsurance(int productId)
@@ -45,29 +63,31 @@ namespace Insurance.Api.Services
                 return new InsuranceDto
                 {
                     ProductId = productId,
-                    InsuranceCost = 0
+                    InsuranceCost = 0,
+                    ProductTypeId = productType.Id
                 };
             }
 
             double insuranceValue = 0;
-            foreach (var rule in InsuranceRuleConstants.Ranges)
+            foreach (var rule in InsuranceRuleConstants.ProductInsuranceRules)
             {
                 insuranceValue += CalculateInsuranceRule(rule, product.SalesPrice);
             };
 
-            if (Enum.IsDefined(typeof(SpecialProductType), productType.Name))
+            if (Enum.IsDefined(typeof(SpecialProductType), productType.Id))
                 insuranceValue += 500;
 
             var insurance = new InsuranceDto()
             {
                 ProductId = productId,
-                InsuranceCost = insuranceValue
+                InsuranceCost = insuranceValue,
+                ProductTypeId = productType.Id
             };
 
             return insurance;
         }
 
-        private double CalculateInsuranceRule(InsuranceRule rule, double salesPrice)
+        private double CalculateInsuranceRule(ProductInsuranceRule rule, double salesPrice)
         {
             if (rule.MaxSalesPrice == null && rule.MinSalesPrice == null)
                 return 0;
