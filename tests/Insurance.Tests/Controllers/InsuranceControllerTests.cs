@@ -31,7 +31,7 @@ namespace Insurance.Tests.Controllers
                 InsuranceCost = 100
             };
 
-            _insuranceService.Setup(client => client.CalculateInsurance(It.IsAny<int>()))
+            _insuranceService.Setup(client => client.CalculateProductInsurance(It.IsAny<int>()))
                 .Returns(Task.FromResult(insurance));
 
             var result = await _insuranceController.CalculateInsurance(1);
@@ -46,7 +46,7 @@ namespace Insurance.Tests.Controllers
         [Fact]
         public async Task GivenCalculateInsuranceThrowsException_ShouldThrowException()
         {
-            _insuranceService.Setup(client => client.CalculateInsurance(It.IsAny<int>()))
+            _insuranceService.Setup(client => client.CalculateProductInsurance(It.IsAny<int>()))
                 .ThrowsAsync(new Exception());
 
             await Assert.ThrowsAsync<Exception>(async () => await _insuranceController.CalculateInsurance(1));

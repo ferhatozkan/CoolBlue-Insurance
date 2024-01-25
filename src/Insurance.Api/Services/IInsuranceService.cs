@@ -6,7 +6,7 @@ namespace Insurance.Api.Services
 {
     public interface IInsuranceService
     {
-        Task<InsuranceDto> CalculateInsurance(int productId);
+        Task<InsuranceDto> CalculateProductInsurance(int productId);
         Task<CartInsuranceDto> CalculateCartInsurance(List<int> productIds);
     }
 }

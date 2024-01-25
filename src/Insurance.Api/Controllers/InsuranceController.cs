@@ -20,7 +20,7 @@ namespace Insurance.Api.Controllers
         [Route("/product/{productId}")]
         public async Task<ActionResult> CalculateInsurance([FromRoute] int productId)
         {
-            var insurance = await _insuranceService.CalculateInsurance(productId);
+            var insurance = await _insuranceService.CalculateProductInsurance(productId);
 
             return Ok(insurance);
         }
