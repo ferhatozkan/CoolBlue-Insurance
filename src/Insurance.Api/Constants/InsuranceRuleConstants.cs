@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Insurance.Api.Services.Models;
 
-namespace Insurance.Api.Models
+namespace Insurance.Api.Constants
 {
     public class InsuranceRuleConstants
     {
