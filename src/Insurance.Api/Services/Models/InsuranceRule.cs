@@ -1,4 +1,4 @@
-﻿namespace Insurance.Api.Models
+﻿namespace Insurance.Api.Services.Models
 {
     public class InsuranceRule
     {

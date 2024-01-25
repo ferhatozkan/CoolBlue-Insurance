@@ -1,12 +1,13 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Constants;
 using Insurance.Api.Models;
+using Insurance.Api.Services.Models;
 using System;
 using System.Threading.Tasks;
 
 namespace Insurance.Api.Services
 {
-    public class InsuranceService
+    public class InsuranceService : IInsuranceService
     {
         private readonly IProductApiClient _productApiClient;
 

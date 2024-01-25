@@ -8,7 +8,7 @@ namespace Insurance.Api.Clients
     {
         public static IServiceCollection AddClients(this IServiceCollection services, IConfiguration configurationManager) 
         {
-            services.Configure<ProductApiClientConfiguration>(configurationManager.GetSection("ProductApi"));
+            services.Configure<ProductApiClientConfiguration>(options => configurationManager.GetSection("ProductApiClientConfiguration").Bind(options));
             services.AddScoped<IProductApiClient, ProductApiClient>();
             return services;
         }

@@ -1,4 +1,5 @@
 using Insurance.Api.Clients;
+using Insurance.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ namespace Insurance.Api
 
             builder.Services.AddControllers();
             builder.Services.AddClients(builder.Configuration);
+            builder.Services.AddServices();
 
             builder.Services.AddHttpClient();
             builder.Services.AddEndpointsApiExplorer();

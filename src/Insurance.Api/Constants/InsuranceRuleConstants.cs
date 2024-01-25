@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Insurance.Api.Models;
+using Insurance.Api.Services.Models;
 
 namespace Insurance.Api.Constants
 {
