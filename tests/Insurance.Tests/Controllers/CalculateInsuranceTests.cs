@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Insurance.Tests
+namespace Insurance.Tests.Controllers
 {
     public class CalculateInsuranceTests : IClassFixture<ControllerTestFixture>
     {
