@@ -24,108 +24,108 @@ namespace Insurance.Tests.Controllers
         }
 
         [Fact]
-        public async Task GivenGetAllSurchargeRatesSuccessfully_ShouldReturn200StatusCode()
+        public async Task GivenGetAllSuccessfully_ShouldReturn200StatusCode()
         {
-            _surchargeRateService.Setup(client => client.GetAllSurchargeRates())
+            _surchargeRateService.Setup(client => client.GetAll())
                 .Returns(Task.FromResult(new List<SurchargeRateDto>()));
 
-            var result = await _surchargeRateController.GetAllSurchargeRates();
+            var result = await _surchargeRateController.GetAll();
 
             var okObjectResult = Assert.IsType<OkObjectResult>(result);
             var response = Assert.IsType<List<SurchargeRateDto>>(okObjectResult.Value);
         }
 
         [Fact]
-        public async Task GivenGetAllSurchargeRatesThrowsException_ShouldThrowException()
+        public async Task GivenGetAllThrowsException_ShouldThrowException()
         {
-            _surchargeRateService.Setup(client => client.GetAllSurchargeRates())
+            _surchargeRateService.Setup(client => client.GetAll())
                 .ThrowsAsync(new Exception());
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.GetAllSurchargeRates());
+            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.GetAll());
         }
 
         [Fact]
-        public async Task GivenGetSurchargeRateByIdSuccessfully_ShouldReturn200StatusCode()
+        public async Task GivenGetByIdSuccessfully_ShouldReturn200StatusCode()
         {
-            _surchargeRateService.Setup(client => client.GetSurchargeRateById(It.IsAny<int>()))
+            _surchargeRateService.Setup(client => client.GetById(It.IsAny<int>()))
                 .Returns(Task.FromResult(new SurchargeRateDto()));
 
-            var result = await _surchargeRateController.GetSurchargeRateById(1);
+            var result = await _surchargeRateController.GetById(1);
 
             var okObjectResult = Assert.IsType<OkObjectResult>(result);
             var response = Assert.IsType<SurchargeRateDto>(okObjectResult.Value);
         }
 
         [Fact]
-        public async Task GivenGetSurchargeRateByIdThrowsException_ShouldThrowExceptio()
+        public async Task GivenGetByIdThrowsException_ShouldThrowExceptio()
         {
-            _surchargeRateService.Setup(client => client.GetSurchargeRateById(1))
+            _surchargeRateService.Setup(client => client.GetById(1))
                 .ThrowsAsync(new Exception());
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.GetSurchargeRateById(1));
+            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.GetById(1));
         }
 
         [Fact]
-        public async Task GivenCreateSurchargeRateSuccessfully_ShouldReturn200StatusCode()
+        public async Task GivenCreateSuccessfully_ShouldReturn200StatusCode()
         {
-            _surchargeRateService.Setup(client => client.CreateSurchargeRate(It.IsAny<CreateSurchargeRateRequest>()))
+            _surchargeRateService.Setup(client => client.Create(It.IsAny<CreateSurchargeRateRequest>()))
                 .Returns(Task.FromResult(new SurchargeRateDto()));
 
-            var result = await _surchargeRateController.CreateSurchargeRate(new CreateSurchargeRateRequest());
+            var result = await _surchargeRateController.Create(new CreateSurchargeRateRequest());
 
             var okObjectResult = Assert.IsType<OkObjectResult>(result);
             var response = Assert.IsType<SurchargeRateDto>(okObjectResult.Value);
         }
 
         [Fact]
-        public async Task GivenCreateSurchargeRateThrowsException_ShouldThrowException()
+        public async Task GivenCreateThrowsException_ShouldThrowException()
         {
-            _surchargeRateService.Setup(client => client.GetAllSurchargeRates())
+            _surchargeRateService.Setup(client => client.GetAll())
                 .ThrowsAsync(new Exception());
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.GetAllSurchargeRates());
+            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.GetAll());
         }
 
 
         [Fact]
-        public async Task GivenUpdateSurchargeRateByIdSuccessfully_ShouldReturn200StatusCode()
+        public async Task GivenUpdateByIdSuccessfully_ShouldReturn200StatusCode()
         {
-            _surchargeRateService.Setup(client => client.UpdateSurchargeRateById(It.IsAny<int>(), It.IsAny<UpdateSurchargeRateRequest>()))
+            _surchargeRateService.Setup(client => client.UpdateById(It.IsAny<int>(), It.IsAny<UpdateSurchargeRateRequest>()))
                 .Returns(Task.FromResult(new SurchargeRateDto()));
 
-            var result = await _surchargeRateController.UpdateSurchargeRateById(1, new UpdateSurchargeRateRequest());
+            var result = await _surchargeRateController.UpdateById(1, new UpdateSurchargeRateRequest());
 
             var okObjectResult = Assert.IsType<OkObjectResult>(result);
             var response = Assert.IsType<SurchargeRateDto>(okObjectResult.Value);
         }
 
         [Fact]
-        public async Task GivenUpdateSurchargeRateByIdThrowsException_ShouldThrowException()
+        public async Task GivenUpdateByIdThrowsException_ShouldThrowException()
         {
-            _surchargeRateService.Setup(client => client.UpdateSurchargeRateById(It.IsAny<int>(), It.IsAny<UpdateSurchargeRateRequest>()))
+            _surchargeRateService.Setup(client => client.UpdateById(It.IsAny<int>(), It.IsAny<UpdateSurchargeRateRequest>()))
                 .ThrowsAsync(new Exception());
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.UpdateSurchargeRateById(1, new UpdateSurchargeRateRequest()));
+            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.UpdateById(1, new UpdateSurchargeRateRequest()));
         }
 
         [Fact]
-        public async Task GivenDeleteSurchargeRateByIdSuccessfully_ShouldReturn200StatusCode()
+        public async Task GivenDeleteByIdSuccessfully_ShouldReturn200StatusCode()
         {
-            _surchargeRateService.Setup(client => client.DeleteSurchargeRateById(It.IsAny<int>()))
+            _surchargeRateService.Setup(client => client.DeleteById(It.IsAny<int>()))
                 .Returns(Task.CompletedTask);
 
-            var result = await _surchargeRateController.DeleteSurchargeRateById(1);
+            var result = await _surchargeRateController.DeleteById(1);
 
             var okObjectResult = Assert.IsType<NoContentResult>(result);
         }
 
         [Fact]
-        public async Task GivenDeleteSurchargeRateByIdThrowsException_ShouldThrowException()
+        public async Task GivenDeleteByIdThrowsException_ShouldThrowException()
         {
-            _surchargeRateService.Setup(client => client.DeleteSurchargeRateById(It.IsAny<int>()))
+            _surchargeRateService.Setup(client => client.DeleteById(It.IsAny<int>()))
                 .ThrowsAsync(new Exception());
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.DeleteSurchargeRateById(1));
+            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateController.DeleteById(1));
         }
     }
 }

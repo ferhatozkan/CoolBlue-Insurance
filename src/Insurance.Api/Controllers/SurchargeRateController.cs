@@ -17,41 +17,41 @@ namespace Insurance.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllSurchargeRates()
+        public async Task<ActionResult> GetAll()
         {
-            var surchargeRates = await _surchargeRateService.GetAllSurchargeRates();
+            var surchargeRates = await _surchargeRateService.GetAll();
 
             return Ok(surchargeRates);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetSurchargeRateById(int id)
+        public async Task<ActionResult> GetById(int id)
         {
-            var surchargeRates = await _surchargeRateService.GetSurchargeRateById(id);
+            var surchargeRates = await _surchargeRateService.GetById(id);
 
             return Ok(surchargeRates);
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateSurchargeRate([FromBody] CreateSurchargeRateRequest request)
+        public async Task<ActionResult> Create([FromBody] CreateSurchargeRateRequest request)
         {
-            var surchargeRate = await _surchargeRateService.CreateSurchargeRate(request);
+            var surchargeRate = await _surchargeRateService.Create(request);
 
             return Ok(surchargeRate);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateSurchargeRateById(int id, [FromBody] UpdateSurchargeRateRequest request)
+        public async Task<ActionResult> UpdateById(int id, [FromBody] UpdateSurchargeRateRequest request)
         {
-            var surchargeRate = await _surchargeRateService.UpdateSurchargeRateById(id, request);
+            var surchargeRate = await _surchargeRateService.UpdateById(id, request);
 
             return Ok(surchargeRate);
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteSurchargeRateById(int id)
+        public async Task<ActionResult> DeleteById(int id)
         {
-            await _surchargeRateService.DeleteSurchargeRateById(id);
+            await _surchargeRateService.DeleteById(id);
 
             return NoContent();
         }
