@@ -2,7 +2,7 @@
 {
     public enum SpecialProductType
     {
-        Smartphones,
-        Laptops
+        Smartphones = 32,
+        Laptops = 21
     }
 }

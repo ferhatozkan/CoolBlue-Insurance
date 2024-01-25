@@ -1,6 +1,6 @@
 ﻿namespace Insurance.Api.Services.Models
 {
-    public class InsuranceRule
+    public class ProductInsuranceRule
     {
         public int? MinSalesPrice { get; set; }
         public int? MaxSalesPrice { get; set; }

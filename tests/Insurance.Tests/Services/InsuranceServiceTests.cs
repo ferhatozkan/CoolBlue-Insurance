@@ -83,7 +83,8 @@ namespace Insurance.Tests.Services
         [Theory]
         [InlineData("CartProductTypesCantBeInsured", 0)]
         [InlineData("CartThreeProductsWithPriceRange(500-1000)-InclusiveLowerLimit-NonSpecialType", 3000)]
-        [InlineData("CartProductsWithPriceRange(2000-Infinity)-InclusiveLowerLimit-SpecialTypeAndPriceRange(500-1000)-InclusiveLowerLimit-NonSpecialType", 3500)]
+        [InlineData("CartProductsWithPriceRange(2000-Infinity)-InclusiveLowerLimit-SpecialType_And_PriceRange(500-1000)-InclusiveLowerLimit-NonSpecialType", 3500)]
+        [InlineData("CartProductsWithPriceRange(2000-Infinity)-InclusiveLowerLimit-SpecialType_And_PriceRange(500-1000)-InclusiveLowerLimit-NonSpecialType_And_PriceRange(0-500)-FrequentlyLostType", 4000)]
         public async Task GivenUseCaseCartProducts_CalculateCartInsuranceShouldReturnExpectedInsurance(string testCase, int expectedCartInsurance)
         {
             var data = GetCartProducts().GetValueOrDefault(testCase);
@@ -258,7 +259,7 @@ namespace Insurance.Tests.Services
                         },
                         new ProductTypeDto
                         {
-                            Id = 1,
+                            Id = 32,
                             Name = "Smartphones",
                             CanBeInsured = true
                         })
@@ -275,7 +276,7 @@ namespace Insurance.Tests.Services
                         },
                         new ProductTypeDto
                         {
-                            Id = 1,
+                            Id = 32,
                             Name = "Smartphones",
                             CanBeInsured = true
                         })
@@ -292,7 +293,7 @@ namespace Insurance.Tests.Services
                         },
                         new ProductTypeDto
                         {
-                            Id = 1,
+                            Id = 32,
                             Name = "Smartphones",
                             CanBeInsured = true
                         })
@@ -309,7 +310,7 @@ namespace Insurance.Tests.Services
                         },
                         new ProductTypeDto
                         {
-                            Id = 1,
+                            Id = 32,
                             Name = "Smartphones",
                             CanBeInsured = true
                         })
@@ -326,7 +327,7 @@ namespace Insurance.Tests.Services
                         },
                         new ProductTypeDto
                         {
-                            Id = 1,
+                            Id = 32,
                             Name = "Smartphones",
                             CanBeInsured = true
                         })
@@ -414,15 +415,15 @@ namespace Insurance.Tests.Services
                         })
                 },
                 {
-                    "CartProductsWithPriceRange(2000-Infinity)-InclusiveLowerLimit-SpecialTypeAndPriceRange(500-1000)-InclusiveLowerLimit-NonSpecialType",
+                    "CartProductsWithPriceRange(2000-Infinity)-InclusiveLowerLimit-SpecialType_And_PriceRange(500-1000)-InclusiveLowerLimit-NonSpecialType",
                     Tuple.Create(
-                          new List<ProductDto>
+                        new List<ProductDto>
                         {
                             new ProductDto
                             {
                                 Id = 1,
                                 Name = "Product",
-                                ProductTypeId = 1,
+                                ProductTypeId = 32,
                                 SalesPrice = 2100
                             },
                             new ProductDto
@@ -437,7 +438,7 @@ namespace Insurance.Tests.Services
                         {
                             new ProductTypeDto
                             {
-                                Id = 1,
+                                Id = 32,
                                 Name = "Smartphones",
                                 CanBeInsured = true
                             },
@@ -445,6 +446,55 @@ namespace Insurance.Tests.Services
                             {
                                 Id = 2,
                                 Name = "CanBeInsured Simple Type",
+                                CanBeInsured = true
+                            }
+                        })
+                },
+                {
+                    "CartProductsWithPriceRange(2000-Infinity)-InclusiveLowerLimit-SpecialType_And_PriceRange(500-1000)-InclusiveLowerLimit-NonSpecialType_And_PriceRange(0-500)-FrequentlyLostType",
+                    Tuple.Create(
+                          new List<ProductDto>
+                        {
+                            new ProductDto
+                            {
+                                Id = 1,
+                                Name = "Product",
+                                ProductTypeId = 32,
+                                SalesPrice = 2100
+                            },
+                            new ProductDto
+                            {
+                                Id = 2,
+                                Name = "Product",
+                                ProductTypeId = 2,
+                                SalesPrice = 700
+                            },
+                            new ProductDto
+                            {
+                                Id = 3,
+                                Name = "Product",
+                                ProductTypeId = 33,
+                                SalesPrice = 319
+                            }
+                        },
+                        new List<ProductTypeDto>
+                        {
+                            new ProductTypeDto
+                            {
+                                Id = 32,
+                                Name = "Smartphones",
+                                CanBeInsured = true
+                            },
+                            new ProductTypeDto
+                            {
+                                Id = 2,
+                                Name = "CanBeInsured Simple Type",
+                                CanBeInsured = true
+                            },
+                            new ProductTypeDto
+                            {
+                                Id = 33,
+                                Name = "Frequently Lost Type",
                                 CanBeInsured = true
                             }
                         })
