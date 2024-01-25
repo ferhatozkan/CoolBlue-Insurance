@@ -1,12 +1,12 @@
 ﻿using Insurance.Api.Controllers;
-using Insurance.Api.Services;
 using Moq;
 using System.Threading.Tasks;
 using System;
 using Xunit;
 using Microsoft.AspNetCore.Mvc;
-using Insurance.Api.Models;
 using System.Collections.Generic;
+using Insurance.Api.Services.Insurance;
+using Insurance.Api.Models.Dto;
 
 namespace Insurance.Tests.Controllers
 {

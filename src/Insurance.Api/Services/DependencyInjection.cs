@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Insurance.Api.Services.Insurance;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Insurance.Api.Services
 {

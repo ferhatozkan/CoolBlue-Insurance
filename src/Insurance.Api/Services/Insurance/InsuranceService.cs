@@ -1,13 +1,13 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Constants;
-using Insurance.Api.Models;
-using Insurance.Api.Services.Models;
+using Insurance.Api.Models.Dto;
+using Insurance.Api.Services.Insurance.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Insurance.Api.Services
+namespace Insurance.Api.Services.Insurance
 {
     public class InsuranceService : IInsuranceService
     {
@@ -47,7 +47,7 @@ namespace Insurance.Api.Services
             double insuranceCost = 0;
             foreach (var cartProductType in cartProductTypes)
             {
-                var cartInsuranceCost = InsuranceRuleConstants.CartInsuranceRules.GetValueOrDefault((FrequentlyLostProductType) cartProductType);
+                var cartInsuranceCost = InsuranceRuleConstants.CartInsuranceRules.GetValueOrDefault((FrequentlyLostProductType)cartProductType);
                 insuranceCost += cartInsuranceCost;
             }
             return insuranceCost;

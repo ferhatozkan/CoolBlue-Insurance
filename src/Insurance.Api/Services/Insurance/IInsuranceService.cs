@@ -1,8 +1,8 @@
-﻿using Insurance.Api.Models;
+﻿using Insurance.Api.Models.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Insurance.Api.Services
+namespace Insurance.Api.Services.Insurance
 {
     public interface IInsuranceService
     {

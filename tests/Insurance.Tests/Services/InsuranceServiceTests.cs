@@ -1,7 +1,7 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Clients.Models;
 using Insurance.Api.Models;
-using Insurance.Api.Services;
+using Insurance.Api.Services.Insurance;
 using Moq;
 using System;
 using System.Collections.Generic;
