@@ -1,12 +1,12 @@
 ﻿using Insurance.Api.Controllers;
-using Insurance.Api.Services;
 using Moq;
 using System.Threading.Tasks;
 using System;
 using Xunit;
 using Microsoft.AspNetCore.Mvc;
-using Insurance.Api.Models;
 using System.Collections.Generic;
+using Insurance.Api.Services.Insurance;
+using Insurance.Api.Models.Dto;
 
 namespace Insurance.Tests.Controllers
 {
@@ -31,7 +31,7 @@ namespace Insurance.Tests.Controllers
                 InsuranceCost = 100
             };
 
-            _insuranceService.Setup(client => client.CalculateProductInsurance(It.IsAny<int>()))
+            _insuranceService.Setup(service => service.CalculateProductInsurance(It.IsAny<int>()))
                 .Returns(Task.FromResult(insurance));
 
             var result = await _insuranceController.CalculateInsurance(1);
@@ -46,7 +46,7 @@ namespace Insurance.Tests.Controllers
         [Fact]
         public async Task GivenCalculateInsuranceThrowsException_ShouldThrowException()
         {
-            _insuranceService.Setup(client => client.CalculateProductInsurance(It.IsAny<int>()))
+            _insuranceService.Setup(service => service.CalculateProductInsurance(It.IsAny<int>()))
                 .ThrowsAsync(new Exception());
 
             await Assert.ThrowsAsync<Exception>(async () => await _insuranceController.CalculateInsurance(1));
@@ -65,7 +65,7 @@ namespace Insurance.Tests.Controllers
                 }
             };
 
-            _insuranceService.Setup(client => client.CalculateCartInsurance(It.IsAny<List<int>>()))
+            _insuranceService.Setup(service => service.CalculateCartInsurance(It.IsAny<List<int>>()))
                 .Returns(Task.FromResult(cartInsurance));
 
             var result = await _insuranceController.CalculateCartInsurance(new List<int>{1,2});

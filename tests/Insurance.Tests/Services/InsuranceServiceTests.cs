@@ -1,7 +1,9 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Clients.Models;
 using Insurance.Api.Models;
-using Insurance.Api.Services;
+using Insurance.Api.Models.Entities;
+using Insurance.Api.Repository;
+using Insurance.Api.Services.Insurance;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -15,11 +17,13 @@ namespace Insurance.Tests.Services
     {
 
         private Mock<IProductApiClient> _productApiClient;
+        private Mock<ISurchargeRateRepository> _surchargeRateRepository;
         private InsuranceService _insuranceService;
         public InsuranceServiceTests()
         {
             _productApiClient = new Mock<IProductApiClient>();
-            _insuranceService = new InsuranceService(_productApiClient.Object);
+            _surchargeRateRepository = new Mock<ISurchargeRateRepository>();
+            _insuranceService = new InsuranceService(_productApiClient.Object, _surchargeRateRepository.Object);
         }
 
         [Theory]
@@ -46,9 +50,50 @@ namespace Insurance.Tests.Services
             _productApiClient.Setup(client => client.GetProductType(It.IsAny<int>()))
                 .Returns(Task.FromResult(productType));
 
+            _surchargeRateRepository.Setup(repository => repository.GetByProductTypeIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult((SurchargeRate)null));
+
             var result = await _insuranceService.CalculateProductInsurance(1);
             Assert.NotNull(result);
             Assert.Equal(expected: expectedInsurance, result.InsuranceCost);
+        }
+
+        [Fact]
+        public async Task GivenProductTypeHasSurchargeRate_CalculateProductInsuranceShouldReturn1610EuroInsuranceCharge()
+        {
+            var product = new ProductDto
+            {
+                Id = 1,
+                Name = "Product",
+                SalesPrice = 1100,
+                ProductTypeId = 1
+            };
+            var productType = new ProductTypeDto
+            {
+                Id = 32,
+                Name = "Smartphone",
+                CanBeInsured = true
+            };
+            var surchargeRate = new SurchargeRate
+            {
+                Id = 1,
+                Name = "Smartphone Surcharge Rate",
+                ProductTypeId = 32,
+                Rate = 10
+            };
+
+            _productApiClient.Setup(client => client.GetProduct(It.IsAny<int>()))
+                .Returns(Task.FromResult(product));
+
+            _productApiClient.Setup(client => client.GetProductType(It.IsAny<int>()))
+                .Returns(Task.FromResult(productType));
+
+            _surchargeRateRepository.Setup(repository => repository.GetByProductTypeIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(surchargeRate));
+
+            var result = await _insuranceService.CalculateProductInsurance(product.Id);
+            Assert.NotNull(result);
+            Assert.Equal(1610, result.InsuranceCost);
         }
 
         [Fact]

@@ -1,4 +1,4 @@
-﻿namespace Insurance.Api.Models
+﻿namespace Insurance.Api.Models.Dto
 {
     public class InsuranceDto
     {

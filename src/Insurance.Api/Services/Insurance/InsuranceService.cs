@@ -1,21 +1,26 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Constants;
-using Insurance.Api.Models;
-using Insurance.Api.Services.Models;
+using Insurance.Api.Models.Dto;
+using Insurance.Api.Repository;
+using Insurance.Api.Services.Insurance.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Insurance.Api.Services
+namespace Insurance.Api.Services.Insurance
 {
     public class InsuranceService : IInsuranceService
     {
         private readonly IProductApiClient _productApiClient;
+        private readonly ISurchargeRateRepository _surchargeRateRepository;
 
-        public InsuranceService(IProductApiClient productApiClient)
+        public InsuranceService(
+            IProductApiClient productApiClient, 
+            ISurchargeRateRepository surchargeRateRepository)
         {
             _productApiClient = productApiClient;
+            _surchargeRateRepository = surchargeRateRepository;
         }
 
         public async Task<InsuranceDto> CalculateProductInsurance(int productId)
@@ -47,7 +52,7 @@ namespace Insurance.Api.Services
             double insuranceCost = 0;
             foreach (var cartProductType in cartProductTypes)
             {
-                var cartInsuranceCost = InsuranceRuleConstants.CartInsuranceRules.GetValueOrDefault((FrequentlyLostProductType) cartProductType);
+                var cartInsuranceCost = InsuranceRuleConstants.CartInsuranceRules.GetValueOrDefault((FrequentlyLostProductType)cartProductType);
                 insuranceCost += cartInsuranceCost;
             }
             return insuranceCost;
@@ -76,6 +81,12 @@ namespace Insurance.Api.Services
 
             if (Enum.IsDefined(typeof(SpecialProductType), productType.Id))
                 insuranceValue += 500;
+
+            var surcharge = await _surchargeRateRepository.GetByProductTypeIdAsync(productType.Id);
+            if (surcharge != null)
+            {
+                insuranceValue += product.SalesPrice * ((double) surcharge.Rate / 100);
+            }
 
             var insurance = new InsuranceDto()
             {

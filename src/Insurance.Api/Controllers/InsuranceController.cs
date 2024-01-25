@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Insurance.Api.Services;
+using Insurance.Api.Services.Insurance;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Insurance.Api.Controllers
 {
-    [Route("api/[controller]")]
-    public class InsuranceController: Controller
+    [ApiController]
+    [Route("api/insurance")]
+    public class InsuranceController : Controller
     {
 
         private readonly IInsuranceService _insuranceService;
@@ -16,8 +17,7 @@ namespace Insurance.Api.Controllers
             _insuranceService = insuranceService;
         }
 
-        [HttpGet]
-        [Route("/product/{productId}")]
+        [HttpGet("product/{productId}")]
         public async Task<ActionResult> CalculateInsurance([FromRoute] int productId)
         {
             var insurance = await _insuranceService.CalculateProductInsurance(productId);
@@ -25,8 +25,7 @@ namespace Insurance.Api.Controllers
             return Ok(insurance);
         }
 
-        [HttpPost]
-        [Route("/product")]
+        [HttpPost("product")]
         public async Task<ActionResult> CalculateCartInsurance(List<int> productIds)
         {
             var cartInsurance = await _insuranceService.CalculateCartInsurance(productIds);
