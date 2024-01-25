@@ -46,7 +46,7 @@ namespace Insurance.Tests.Services
 
             var result = await _insuranceService.CalculateInsurance(1);
             Assert.NotNull(result);
-            Assert.Equal(expected: expectedInsurance, result.InsuranceValue);
+            Assert.Equal(expected: expectedInsurance, result.InsuranceCost);
         }
 
         [Fact]

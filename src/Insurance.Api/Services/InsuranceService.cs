@@ -3,6 +3,7 @@ using Insurance.Api.Constants;
 using Insurance.Api.Models;
 using Insurance.Api.Services.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Insurance.Api.Services
@@ -26,7 +27,7 @@ namespace Insurance.Api.Services
                 return new InsuranceDto
                 {
                     ProductId = productId,
-                    InsuranceValue = 0
+                    InsuranceCost = 0
                 };
             }
 
@@ -42,10 +43,15 @@ namespace Insurance.Api.Services
             var insurance = new InsuranceDto()
             {
                 ProductId = productId,
-                InsuranceValue = insuranceValue
+                InsuranceCost = insuranceValue
             };
 
             return insurance;
+        }
+
+        public Task<CartInsuranceDto> CalculateCartInsurance(List<int> productIds)
+        {
+            throw new NotImplementedException();
         }
 
         private double CalculateInsuranceRule(InsuranceRule rule, double salesPrice)
