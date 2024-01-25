@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Insurance.Api.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +20,18 @@ namespace Insurance.Api.Controllers
         [Route("/product/{productId}")]
         public async Task<ActionResult> CalculateInsurance([FromRoute] int productId)
         {
-            var insurance = await _insuranceService.CalculateInsurance(productId);
+            var insurance = await _insuranceService.CalculateProductInsurance(productId);
 
             return Ok(insurance);
+        }
+
+        [HttpPost]
+        [Route("/product")]
+        public async Task<ActionResult> CalculateCartInsurance(List<int> productIds)
+        {
+            var cartInsurance = await _insuranceService.CalculateCartInsurance(productIds);
+
+            return Ok(cartInsurance);
         }
     }
 }

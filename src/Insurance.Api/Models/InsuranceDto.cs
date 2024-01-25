@@ -3,6 +3,6 @@
     public class InsuranceDto
     {
         public int ProductId { get; set; }
-        public double InsuranceValue { get; set; }
+        public double InsuranceCost { get; set; }
     }
 }
