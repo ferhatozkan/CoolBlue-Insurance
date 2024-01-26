@@ -1,4 +1,4 @@
-# CoolBlue Software Development Assignment
+# :package: CoolBlue - Software Development Assignment :truck:
 
 It includes the assignment done for the case created by CoolBlue. CoolBlue has written some of the code before. They have provided us the external Product API that we can use. The cases CoolBlue wants are as follows:
 
@@ -45,6 +45,7 @@ To see the coverage resuls for the project's unit tests, follow these steps:
   
 
 ## Used Technologies
+- Docker
 - FluentValidation
 - Entity Framework Core InMemory
 - Moq
@@ -54,8 +55,9 @@ To see the coverage resuls for the project's unit tests, follow these steps:
   
 
 ## Technical Structures
+- Unit Tests and Integration Tests (Behavioural Tests)
 - Used chain of responsibility pattern for applying insurence cost by product calculation rules
-- Used validator for request classes with FluentValidation
+- Implemented validators for request models with FluentValidation
 - Created API documentation with Swagger
 - Created a filter for exception handling and used custom exception types
 - Used Microsoft Logging library to write output logs
@@ -66,14 +68,15 @@ To see the coverage resuls for the project's unit tests, follow these steps:
 1. "Laptop" product type has been added twice. As the document emphasizes the need to add insurance to Laptop products, we accepted the one with the ID 21 as correct. The product type with the ID 841 has been incorrectly added. The data needs to be corrected to ensure uniqueness based on the Name column in the table. Thats why the operations have been done with the id field and not the name field.
 2. Insurance Sales Price Ranges must be defined as unique and non-overlapping
 3. For a product type, there is one surcharge rate. The surcharge controller does not allow the addition of two surcharge rates for the same product type
+4. Given a cart with multiple products of various types, surcharge rules will apply to all products in the shopping cart. If the product type ID of a cart item matches a surcharge rule, surcharge calculation will be performed and added to the respective cart item's insurance value.
 
   
 ## Architectural Brainstorming
 I observed that my class, which performs calculations based on the features given in the case, expands with each new feature. I noticed that I added new 'if' statements for each case. Therefore, I defined the cases that will be included in this calculation as rules. I ran these rules in a chain by arranging them in a logical order. In this chain logic, the rules are derived from a common abstraction. Each one operates with the same method but with different calculation implementations, impacting the result:
 
--  **[CHAIN 1]** Calculation based on the status of the canBeInsured field for the product type.
--  **[CHAIN 2]** Calculation based on the sale price range rules.
--  **[CHAIN 3]** Calculation based on specific types (such as smartphones or laptops).
--  **[CHAIN 4]** Calculation performed when there is a surcharge for a product.
+- **[CHAIN 1]** Calculation based on the status of the canBeInsured field for the product type.
+- **[CHAIN 2]** Calculation based on the sale price range rules.
+- **[CHAIN 3]** Calculation based on specific types (such as smartphones or laptops).
+- **[CHAIN 4]** Calculation performed when there is a surcharge for a product.
 
-[OUT OF CHAIN] In addition to these rules, an extra insurance is added for frequently lost items in the cart (only cart case not a product case), such as Digital Cameras. This case is for shopping carts only. If the requirement had more cases for cart based insurance calculations additional design patterns could have been applied. (Good Enough Solution)
+**[OUT OF CHAIN]** In addition to these rules, an extra insurance is added for frequently lost items in the cart (only cart case not a product case), such as Digital Cameras. This case is for shopping carts only. If the requirement had more cases for cart based insurance calculations additional design patterns could have been applied. (Good Enough Solution)
