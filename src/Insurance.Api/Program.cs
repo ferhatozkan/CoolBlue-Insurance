@@ -1,17 +1,18 @@
 using FluentValidation.AspNetCore;
-using Insurance.Api.Clients;
-using Insurance.Api.Filters;
-using Insurance.Api.Repository;
-using Insurance.Api.Services;
-using Insurance.Api.Validators;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Reflection;
 using System;
+using Insurance.Api.Application;
+using Insurance.Api.Application.Services;
+using Insurance.Api.Infrastructure;
+using Insurance.Api.Infrastructure.Clients;
+using Insurance.Api.Infrastructure.Repository;
+using Insurance.Api.Presentation;
+using Insurance.Api.Presentation.Filters;
 
 namespace Insurance.Api
 {
@@ -20,13 +21,10 @@ namespace Insurance.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            builder.Services.AddControllers(options => options.Filters.Add(typeof(InsuranceExceptionFilterAttribute)));
-            builder.Services.AddFluentValidationAutoValidation();
-            builder.Services.AddValidators();
-            builder.Services.AddClients(builder.Configuration);
-            builder.Services.AddServices();
-            builder.Services.AddRepositories();
+            
+            builder.Services.AddApplication();
+            builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddPresentation();
 
             builder.Services.AddHttpClient();
             builder.Services.AddEndpointsApiExplorer();
