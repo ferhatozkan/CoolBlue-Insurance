@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: insuranceapi
+    ports:
+      - "8081:80"
+    restart: always
+    environment:
+      "ASPNETCORE_ENVIRONMENT": "Development"
+      "ProductApiClientConfiguration:Url": "http://productapi"
+  
+  productapi:
+    container_name: productapi
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    volumes:
+      - .:/ProductData.Api
+    working_dir: /ProductData.Api
+    ports:
+      - "8080:80"
+    restart: always
+    entrypoint: [ 'dotnet', './ProductData.Api/ProductData.Api.dll' ]
+    environment:
+      "ASPNETCORE_URLS": "http://+:80"

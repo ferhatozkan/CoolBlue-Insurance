@@ -1,4 +1,3 @@
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,12 +6,8 @@ using System.IO;
 using System.Reflection;
 using System;
 using Insurance.Api.Application;
-using Insurance.Api.Application.Services;
 using Insurance.Api.Infrastructure;
-using Insurance.Api.Infrastructure.Clients;
-using Insurance.Api.Infrastructure.Repository;
 using Insurance.Api.Presentation;
-using Insurance.Api.Presentation.Filters;
 
 namespace Insurance.Api
 {
@@ -50,9 +45,7 @@ namespace Insurance.Api
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 });
             }
-
-            app.UseHttpsRedirection();
-
+            
             app.UseRouting();
 
             app.UseAuthorization();
