@@ -13,9 +13,10 @@ namespace Insurance.Api.Presentation
         {
             services.AddControllers(options => options.Filters.Add(typeof(ExceptionFilterAttribute)));
             services.AddFluentValidationAutoValidation();
-
             services.AddScoped<IValidator<UpdateSurchargeRateRequest>, UpdateSurchargeRateRequestValidator>();
             services.AddScoped<IValidator<CreateSurchargeRateRequest>, CreateSurchargeRateRequestValidator>();
+            services.AddScoped<IValidator<CartInsuranceRequest>, CartInsuranceRequestValidator>();
+            services.AddScoped<IValidator<CartInsuranceItem>, CartInsuranceItemValidator>();
             return services;
         }
     }
