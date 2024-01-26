@@ -50,9 +50,9 @@ It includes the assignment done for the case created by CoolBlue. CoolBlue has w
 
 ## Technical Structures
 
-- Used chain of responsibility pattern for applying all insurence cost calculation rules
+- Used chain of responsibility pattern for applying insurence cost by product calculation rules
 
-- Used validator for request and response classes provided by FluentValidation
+- Used validator for request classes with FluentValidation
 
 - Created API documentation with Swagger
 
@@ -61,19 +61,14 @@ It includes the assignment done for the case created by CoolBlue. CoolBlue has w
 - Used Microsoft Logging library to write output logs
 
 - Applied SOLID principles
-
-- The architecture is established by the separation of concerns
-
-- Increased the readability of the code
-
   
   
 
 ## Assumptions
 
-1. "Laptop" product type has been added twice. As the document emphasizes the need to add insurance to Laptop products, we accepted the one with the ID 21 as correct. The product type with the ID 841 has been incorrectly added. The data needs to be corrected to ensure uniqueness based on the Name column in the table.
+1. "Laptop" product type has been added twice. As the document emphasizes the need to add insurance to Laptop products, we accepted the one with the ID 21 as correct. The product type with the ID 841 has been incorrectly added. The data needs to be corrected to ensure uniqueness based on the Name column in the table. Thats why the operations have been done with the id field and not the name field.
 
-2. Insurance Sales Price Ranges would be defined as unique and non-overlapping
+2. Insurance Sales Price Ranges must be defined as unique and non-overlapping
 
 3. For a product type, there is one surcharge rate. The surcharge controller does not allow the addition of two surcharge rates for the same product type
 
@@ -96,4 +91,4 @@ I observed that my class, which performs calculations based on the features give
 
   
 
-[OUT OF CHAIN] In addition to these rules, an extra insurance is added for frequently lost items in the cart (only cart case not a product case), such as Digital Cameras. This case is for shopping carts only.
+[OUT OF CHAIN] In addition to these rules, an extra insurance is added for frequently lost items in the cart (only cart case not a product case), such as Digital Cameras. This case is for shopping carts only. If the requirement had more cases for cart based insurance calculations additional design patterns could have been applied. (Good Enough Solution)
