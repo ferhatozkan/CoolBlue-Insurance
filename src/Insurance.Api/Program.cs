@@ -1,4 +1,5 @@
 using Insurance.Api.Clients;
+using Insurance.Api.Filters;
 using Insurance.Api.Repository;
 using Insurance.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +16,7 @@ namespace Insurance.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options => options.Filters.Add(typeof(InsuranceExceptionFilterAttribute)));
             builder.Services.AddClients(builder.Configuration);
             builder.Services.AddServices();
             builder.Services.AddRepositories();

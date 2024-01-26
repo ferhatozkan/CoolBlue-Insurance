@@ -1,4 +1,5 @@
-﻿using Insurance.Api.Models.Dto;
+﻿using Insurance.Api.Exceptions;
+using Insurance.Api.Models.Dto;
 using Insurance.Api.Models.Entities;
 using Insurance.Api.Models.Request;
 using Insurance.Api.Repository;
@@ -86,7 +87,7 @@ namespace Insurance.Api.Services.Surcharge
             var surchargeRate = await _surchargeRateRepository.GetByIdAsync(id);
 
             if (surchargeRate == null)
-                throw new Exception();
+                throw new NotFoundException($"Surcharge rate with Id {id} cannot be found");
 
             surchargeRate.Name = request.Name;
             surchargeRate.Rate = request.Rate;
