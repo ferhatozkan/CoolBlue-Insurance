@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.IO;
+using System.Reflection;
+using System;
 
 namespace Insurance.Api
 {
@@ -34,6 +37,9 @@ namespace Insurance.Api
                     Version = "v1",
                     Title = "CoolBlue Insurance API"
                 });
+
+                var documentationFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, documentationFileName));
             });
 
             var app = builder.Build();
