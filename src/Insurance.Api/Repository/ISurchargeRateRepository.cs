@@ -11,6 +11,6 @@ namespace Insurance.Api.Repository
         Task<SurchargeRate> GetByProductTypeIdAsync(int productTypeId);
         Task CreateAsync(SurchargeRate surchargeRate);
         Task SaveAsync();
-        Task DeleteByIdAsync(int id);
+        Task DeleteByIdAsync(SurchargeRate surchargeRate);
     }
 }
