@@ -43,7 +43,7 @@ namespace Insurance.Tests.Services
         }
 
         [Fact]
-        public async Task GivenGetByIdAsyncSuccess_GetByIdShouldReturnSurchargeRate()
+        public async Task GivenGetByIdAsyncReturnsNotNull_GetByIdShouldReturnSurchargeRate()
         {
             _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
                 .Returns(Task.FromResult(new SurchargeRate()));
@@ -53,17 +53,20 @@ namespace Insurance.Tests.Services
         }
 
         [Fact]
-        public async Task GivenGetByIdAsyncThrowsException_GetByIdShouldThrowException()
+        public async Task GivenGetByIdAsyncReturnsNull_GetByIdShouldThrowNotFoundException()
         {
             _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
-                .ThrowsAsync(new Exception());
+                .Returns(Task.FromResult((SurchargeRate)null));
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateService.GetById(1));
+            await Assert.ThrowsAsync<NotFoundException>(async () => await _surchargeRateService.GetById(1));
         }
 
         [Fact]
-        public async Task GivenCreateAsyncSuccess_CreateShouldReturnSurchargeRate()
+        public async Task GivenGetByProductTypeIdAsyncReturnsNullAndCreateAsyncIsSuccess_CreateShouldReturnSurchargeRate()
         {
+            _surchargeRateRepository.Setup(repository => repository.GetByProductTypeIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult((SurchargeRate)null));
+
             _surchargeRateRepository.Setup(repository => repository.CreateAsync(It.IsAny<SurchargeRate>()))
                 .Returns(Task.CompletedTask);
 
@@ -72,66 +75,75 @@ namespace Insurance.Tests.Services
         }
 
         [Fact]
-        public async Task GivenCreateAsyncThrowsException_CreateShouldThrowException()
+        public async Task GivenGetByProductTypeIdAsyncReturnsNotNull_CreateShouldThrowNotFoundException()
         {
-            _surchargeRateRepository.Setup(repository => repository.CreateAsync(It.IsAny<SurchargeRate>()))
-                .ThrowsAsync(new Exception());
+            _surchargeRateRepository.Setup(repository => repository.GetByProductTypeIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(new SurchargeRate()));
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateService.Create(new CreateSurchargeRateRequest()));
+            await Assert.ThrowsAsync<BadRequestException>(async () => await _surchargeRateService.Create(new CreateSurchargeRateRequest()));
         }
 
         [Fact]
-        public async Task GivenDeleteByIdAsyncSuccess_DeleteByIdShouldReturnSurchargeRate()
+        public async Task GivenGetByIdAsyncReturnsNotNull_DeleteByIdShouldDeleteSuccessfully()
         {
-            _surchargeRateRepository.Setup(repository => repository.DeleteByIdAsync(It.IsAny<int>()))
+            _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(new SurchargeRate()));
+
+            _surchargeRateRepository.Setup(repository => repository.DeleteByIdAsync(It.IsAny<SurchargeRate>()))
                 .Returns(Task.CompletedTask);
 
             await _surchargeRateService.DeleteById(1);
 
-            _surchargeRateRepository.Verify(repository => repository.DeleteByIdAsync(It.IsAny<int>()));
+            _surchargeRateRepository.Verify(repository => repository.DeleteByIdAsync(It.IsAny<SurchargeRate>()));
         }
 
         [Fact]
-        public async Task GivenDeleteByIdAsyncThrowsException_DeleteByIdThrowException()
-        {
-            _surchargeRateRepository.Setup(repository => repository.DeleteByIdAsync(It.IsAny<int>()))
-                .ThrowsAsync(new Exception());
-
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateService.DeleteById(1));
-        }
-
-        [Fact]
-        public async Task GivenSaveAsyncAndGetByIdAsyncSuccess_UpdateShouldReturnSurchargeRate()
-        {
-            _surchargeRateRepository.Setup(repository => repository.SaveAsync())
-                .Returns(Task.CompletedTask);
-
-            _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
-              .Returns(Task.FromResult(new SurchargeRate
-              {
-                  Id = 1
-              }));
-
-            var surchargeRate = await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest());
-            Assert.NotNull(surchargeRate);
-        }
-
-        [Fact]
-        public async Task GivenGetByIdAsyncThrowsException_UpdateByIdShouldThrowException()
+        public async Task GivenGetByIdAsyncReturnsNull_DeleteByIdShouldThrowNotFoundException()
         {
             _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
-                .ThrowsAsync(new Exception());
+                .Returns(Task.FromResult((SurchargeRate)null));
 
-            await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest()));
+            await Assert.ThrowsAsync<NotFoundException>(async () => await _surchargeRateService.DeleteById(1));
+        }
+
+        [Fact]
+        public async Task GiveGetByIdAsyncReturnsNull_UpdateByIdShouldThrowNotFoundException()
+        {
+            _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult((SurchargeRate)null));
+
+            await Assert.ThrowsAsync<NotFoundException>(async () => await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest()));
+        }
+
+        [Fact]
+        public async Task GivenGetByIdAsyncReturnsNotNullAndGetByProductTypeIdAsyncReturnsNotNull_UpdateByIdShouldThrowBadRequestException()
+        {
+            _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(new SurchargeRate()
+                {
+                    Id = 1,
+                }));
+
+            _surchargeRateRepository.Setup(repository => repository.GetByProductTypeIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(new SurchargeRate()
+                {
+                    Id = 4
+                }));
+
+            await Assert.ThrowsAsync<BadRequestException>(async () => await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest()));
         }
 
         [Fact]
         public async Task GivenGetByIdAsyncReturnsNull_UpdateByIdShouldThrowNotFoundException()
         {
             _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+               .Returns(Task.FromResult(new SurchargeRate()));
+
+            _surchargeRateRepository.Setup(repository => repository.GetByProductTypeIdAsync(It.IsAny<int>()))
                 .Returns(Task.FromResult((SurchargeRate)null));
 
-            await Assert.ThrowsAsync<NotFoundException>(async () => await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest()));
+            var surchargeRate = await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest());
+            Assert.NotNull(surchargeRate);
         }
     }
 }

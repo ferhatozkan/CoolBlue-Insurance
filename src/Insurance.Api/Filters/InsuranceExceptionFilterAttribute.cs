@@ -18,6 +18,11 @@ namespace Insurance.Api.Filters
                     context.HttpContext.Response.ContentType = FieldConstants.Exception.JsonContentType;
                     context.Result = new ObjectResult(ErrorMessageResponse.Create(notFoundException.Message));
                     return;
+                case BadRequestException badRequestException:
+                    context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.HttpContext.Response.ContentType = FieldConstants.Exception.JsonContentType;
+                    context.Result = new ObjectResult(ErrorMessageResponse.Create(badRequestException.Message));
+                    return;
                 default:
                     context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.HttpContext.Response.ContentType = FieldConstants.Exception.JsonContentType;

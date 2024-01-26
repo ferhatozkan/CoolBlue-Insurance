@@ -39,9 +39,9 @@ namespace Insurance.Api.Repository
             await _dataContext.SaveChangesAsync();
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(SurchargeRate surchargeRate)
         {
-            _dataContext.SurchargeRates.Remove(new SurchargeRate() { Id = id });
+            _dataContext.SurchargeRates.Remove(surchargeRate);
             await _dataContext.SaveChangesAsync();
         }
     }
