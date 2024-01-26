@@ -16,20 +16,20 @@ namespace Insurance.Api.Application.Services.Insurance.Rules
             _logger = logger;
         }
 
-        public override ProductInsuranceChainDto Handle(ProductInsuranceChainDto productInsuranceDto)
+        public override InsuranceDto Handle(InsuranceDto insuranceDto)
         {
-            var productTypeDto = _productApiClient.GetProductType(productInsuranceDto.ProductTypeId).Result;
+            var productTypeDto = _productApiClient.GetProductType(insuranceDto.ProductTypeId).Result;
 
             if (!productTypeDto.CanBeInsured)
             {
-                productInsuranceDto.InsuranceCost = 0;
+                insuranceDto.InsuranceCost = 0;
 
-                _logger.LogInformation($"This product {productInsuranceDto.ProductId} with type {productInsuranceDto.ProductTypeId} cannot be insured!");
+                _logger.LogInformation($"This product {insuranceDto.ProductId} with type {insuranceDto.ProductTypeId} cannot be insured!");
 
-                return productInsuranceDto;
+                return insuranceDto;
             }
 
-            return NextChain(productInsuranceDto);
+            return NextChain(insuranceDto);
         }
     }
 }

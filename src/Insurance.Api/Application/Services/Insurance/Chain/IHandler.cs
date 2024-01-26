@@ -4,7 +4,7 @@ namespace Insurance.Api.Application.Services.Insurance.Chain
 {
     public interface IHandler
     {
-        ProductInsuranceChainDto Handle(ProductInsuranceChainDto insuranceDto);
+        InsuranceDto Handle(InsuranceDto insuranceDto);
         IHandler SetNext(IHandler handler);
     }
 }

@@ -71,7 +71,7 @@ namespace Insurance.Tests.Application.Services.Insurance
 
             foreach (var product in products)
             {
-                var expectedInsuranceChainDto = new ProductInsuranceChainDto
+                var expectedInsuranceChainDto = new InsuranceDto
                 {
                     ProductId = product.Id,
                     ProductTypeId = product.ProductTypeId,
@@ -87,7 +87,7 @@ namespace Insurance.Tests.Application.Services.Insurance
                 _productApiClient.Setup(client => client.GetProduct(product.Id))
                     .Returns(Task.FromResult(product));
 
-                _insuranceChainService.Setup(service => service.Handle(It.IsAny<ProductInsuranceChainDto>()))
+                _insuranceChainService.Setup(service => service.Handle(It.IsAny<InsuranceDto>()))
                     .Returns(expectedInsuranceChainDto);
             }
 

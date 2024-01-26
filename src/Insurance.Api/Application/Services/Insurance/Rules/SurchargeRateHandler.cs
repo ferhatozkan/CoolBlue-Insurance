@@ -16,20 +16,20 @@ namespace Insurance.Api.Application.Services.Insurance.Rules
             _logger = logger;
         }
 
-        public override ProductInsuranceChainDto Handle(ProductInsuranceChainDto productInsuranceDto)
+        public override InsuranceDto Handle(InsuranceDto insuranceDto)
         {
-            var surcharge = _surchargeRateRepository.GetByProductTypeIdAsync(productInsuranceDto.ProductTypeId).Result;
+            var surcharge = _surchargeRateRepository.GetByProductTypeIdAsync(insuranceDto.ProductTypeId).Result;
             if (surcharge != null)
             {
-                var surchargeCost = productInsuranceDto.SalesPrice * ((double)surcharge.Rate / 100);
+                var surchargeCost = insuranceDto.SalesPrice * ((double)surcharge.Rate / 100);
 
-                productInsuranceDto.InsuranceCost += surchargeCost;
+                insuranceDto.InsuranceCost += surchargeCost;
 
-                _logger.LogInformation($"Surcharge cost was calculated {surchargeCost} for product {productInsuranceDto.ProductId} and productTypeId {productInsuranceDto.ProductTypeId}");
+                _logger.LogInformation($"Surcharge cost was calculated {surchargeCost} for product {insuranceDto.ProductId} and productTypeId {insuranceDto.ProductTypeId}");
             }
 
 
-            return NextChain(productInsuranceDto);
+            return NextChain(insuranceDto);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Insurance.Api.Application.Services.Insurance.Chain
     public abstract class AbstractHandler : IHandler
     {
         private IHandler _nextHandler;
-        public abstract ProductInsuranceChainDto Handle(ProductInsuranceChainDto insuranceDto);
+        public abstract InsuranceDto Handle(InsuranceDto insuranceDto);
 
         public IHandler SetNext(IHandler handler)
         {
@@ -13,14 +13,14 @@ namespace Insurance.Api.Application.Services.Insurance.Chain
             return handler;
         }
 
-        protected ProductInsuranceChainDto NextChain(ProductInsuranceChainDto productInsuranceDto)
+        protected InsuranceDto NextChain(InsuranceDto insuranceDto)
         {
             if (_nextHandler == null)
             {
-                return productInsuranceDto;
+                return insuranceDto;
             }
 
-            return _nextHandler.Handle(productInsuranceDto);
+            return _nextHandler.Handle(insuranceDto);
         }
     }
 }

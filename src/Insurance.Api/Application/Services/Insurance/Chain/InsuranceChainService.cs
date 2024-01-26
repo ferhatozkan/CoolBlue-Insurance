@@ -5,30 +5,25 @@ namespace Insurance.Api.Application.Services.Insurance.Chain
 {
     public class InsuranceChainService : IInsuranceChainService
     {
-        private readonly CanBeInsuredHandler _canBeInsuredHandler;
-        private readonly PriceRuleInsuranceHandler _priceRuleInsuranceHandler;
-        private readonly SpecialTypeInsuranceHandler _specialTypeInsurance;
-        private readonly SurchargeRateHandler _surchargeRateHandler;
+
+        private readonly IHandler _head;
 
         public InsuranceChainService(
-            CanBeInsuredHandler canBeInsuredHandler, 
-            PriceRuleInsuranceHandler priceRuleInsuranceHandler, 
-            SpecialTypeInsuranceHandler specialTypeInsurance, 
+            CanBeInsuredHandler canBeInsuredHandler,
+            PriceRuleInsuranceHandler priceRuleInsuranceHandler,
+            SpecialTypeInsuranceHandler specialTypeInsurance,
             SurchargeRateHandler surchargeRateHandler)
         {
-            _canBeInsuredHandler = canBeInsuredHandler;
-            _priceRuleInsuranceHandler = priceRuleInsuranceHandler;
-            _specialTypeInsurance = specialTypeInsurance;
-            _surchargeRateHandler = surchargeRateHandler;
+            canBeInsuredHandler.SetNext(priceRuleInsuranceHandler);
+            priceRuleInsuranceHandler.SetNext(specialTypeInsurance);
+            specialTypeInsurance.SetNext(surchargeRateHandler);
 
-            _canBeInsuredHandler.SetNext(_priceRuleInsuranceHandler);
-            _priceRuleInsuranceHandler.SetNext(_specialTypeInsurance);
-            _specialTypeInsurance.SetNext(_surchargeRateHandler);
+            _head = canBeInsuredHandler;
         }
 
-        public ProductInsuranceChainDto Handle(ProductInsuranceChainDto productInsuranceDto)
+        public InsuranceDto Handle(InsuranceDto insuranceDto)
         {
-            return _canBeInsuredHandler.Handle(productInsuranceDto);
+            return _head.Handle(insuranceDto);
         }
     }
 }

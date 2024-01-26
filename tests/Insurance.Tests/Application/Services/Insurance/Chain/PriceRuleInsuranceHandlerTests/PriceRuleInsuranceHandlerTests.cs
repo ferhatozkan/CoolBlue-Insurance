@@ -16,18 +16,11 @@ namespace Insurance.Tests.Application.Services.Insurance.Chain.PriceRuleInsuranc
         }
 
         [Theory, ClassData(typeof(PriceRuleInsuranceHandlerData))]
-        public void GivenCanBeInsuredTrue_ShouldNotAddToInsuranceCost(ProductInsuranceChainTestDto chainDto)
+        public void GivenCanBeInsuredTrue_ShouldNotAddToInsuranceCost(double expected, InsuranceDto chainDto)
         {
-            var productInsuranceChainDto = new ProductInsuranceChainDto
-            {
-                ProductId = chainDto.ProductId,
-                ProductTypeId = chainDto.ProductTypeId,
-                SalesPrice = chainDto.SalesPrice,
-                InsuranceCost = chainDto.InsuranceCost
-            };
-            var result = _priceRuleInsuranceHandler.Handle(productInsuranceChainDto);
+            var result = _priceRuleInsuranceHandler.Handle(chainDto);
             Assert.NotNull(result);
-            Assert.Equal(chainDto.ExpectedInsuranceCost, result.InsuranceCost);
+            Assert.Equal(expected, result.InsuranceCost);
         }
     }
 }

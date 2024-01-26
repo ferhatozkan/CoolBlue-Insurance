@@ -29,7 +29,7 @@ namespace Insurance.Tests.Application.Services.Insurance.Chain.CanBeInsuredHandl
                     CanBeInsured = true
                 }));
 
-            var result = _canBeInsuredHandler.Handle(new ProductInsuranceChainDto());
+            var result = _canBeInsuredHandler.Handle(new InsuranceDto());
             Assert.NotNull(result);
             Assert.Equal(0, result.InsuranceCost);
         }
@@ -43,7 +43,7 @@ namespace Insurance.Tests.Application.Services.Insurance.Chain.CanBeInsuredHandl
                     CanBeInsured = false
                 }));
 
-            var result = _canBeInsuredHandler.Handle(new ProductInsuranceChainDto());
+            var result = _canBeInsuredHandler.Handle(new InsuranceDto());
             Assert.NotNull(result);
             Assert.Equal(0, result.InsuranceCost);
         }

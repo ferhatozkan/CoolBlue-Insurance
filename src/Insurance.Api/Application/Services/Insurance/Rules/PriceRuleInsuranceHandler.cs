@@ -16,16 +16,16 @@ namespace Insurance.Api.Application.Services.Insurance.Rules
             _logger = logger;
         }
 
-        public override ProductInsuranceChainDto Handle(ProductInsuranceChainDto productInsuranceDto)
+        public override InsuranceDto Handle(InsuranceDto insuranceDto)
         {
             var productInsuranceRule = InsuranceRuleConstants.ProductInsuranceRules
-                .First(rule => FindInsuranceRule(rule, productInsuranceDto.SalesPrice));
+                .First(rule => FindInsuranceRule(rule, insuranceDto.SalesPrice));
 
-            productInsuranceDto.InsuranceCost += productInsuranceRule.InsurancePrice;
+            insuranceDto.InsuranceCost += productInsuranceRule.InsurancePrice;
 
-            _logger.LogInformation($"Sales price range rule insurance cost was calculated {productInsuranceRule.InsurancePrice} for product {productInsuranceDto.ProductId}");
+            _logger.LogInformation($"Sales price range rule insurance cost was calculated {productInsuranceRule.InsurancePrice} for product {insuranceDto.ProductId}");
 
-            return NextChain(productInsuranceDto);
+            return NextChain(insuranceDto);
         }
 
         private bool FindInsuranceRule(ProductInsuranceRule rule, double salesPrice)

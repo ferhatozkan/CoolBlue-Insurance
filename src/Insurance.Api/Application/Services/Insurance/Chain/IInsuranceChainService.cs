@@ -4,6 +4,6 @@ namespace Insurance.Api.Application.Services.Insurance.Chain
 {
     public interface IInsuranceChainService
     {
-        ProductInsuranceChainDto Handle(ProductInsuranceChainDto productInsuranceDto);
+        InsuranceDto Handle(InsuranceDto insuranceDto);
     }
 }

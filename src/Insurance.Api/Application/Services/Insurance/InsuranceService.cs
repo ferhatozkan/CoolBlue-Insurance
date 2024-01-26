@@ -48,18 +48,18 @@ namespace Insurance.Api.Application.Services.Insurance
             var productIds = cartInsuranceRequest.CartItems.Select(ci => ci.ProductId);
             _logger.LogInformation($"CalculateCartInsurance was invoked with productIds {string.Join(",", productIds)} on {DateTime.UtcNow}");
 
-            var itemInsuranceDtos = new List<InsuranceDto>();
+            var insuranceDtos = new List<InsuranceDto>();
             foreach (var item in cartInsuranceRequest.CartItems)
             {
-                var itemInsuranceDto = await CalculateInsurance(item.ProductId);
-                itemInsuranceDtos.Add(itemInsuranceDto);
+                var insuranceDto = await CalculateInsurance(item.ProductId);
+                insuranceDtos.Add(insuranceDto);
             }
 
-            var productInsuranceSum = itemInsuranceDtos.Sum(p => p.InsuranceCost);
+            var productInsuranceSum = insuranceDtos.Sum(p => p.InsuranceCost);
 
             _logger.LogInformation($"Products insurance cost was calculated {productInsuranceSum} Euros");
 
-            var cartProductTypes = itemInsuranceDtos.Select(p => p.ProductTypeId).Distinct().ToList();
+            var cartProductTypes = insuranceDtos.Select(p => p.ProductTypeId).Distinct().ToList();
             var cartInsurance = ApplyCartInsurance(cartProductTypes);
 
             _logger.LogInformation($"Cart insurance cost was calculated {cartInsurance} Euros");
@@ -71,7 +71,7 @@ namespace Insurance.Api.Application.Services.Insurance
             var cartInsuranceDto = new CartInsuranceDto
             {
                 TotalInsuranceCost = totalInsuranceCost,
-                CartInsuranceItems = itemInsuranceDtos.Select(insurance => new CartInsuranceItemDto
+                CartInsuranceItems = insuranceDtos.Select(insurance => new CartInsuranceItemDto
                 {
                     ProductId = insurance.ProductId,
                     InsuranceCost = insurance.InsuranceCost
@@ -96,7 +96,7 @@ namespace Insurance.Api.Application.Services.Insurance
         {
             var product = await _productApiClient.GetProduct(productId);
 
-            var productInsuranceDto = _insuranceChainService.Handle(new ProductInsuranceChainDto
+            var productInsuranceDto = _insuranceChainService.Handle(new InsuranceDto
             {
                 InsuranceCost = 0,
                 ProductId = product.Id,
@@ -104,7 +104,7 @@ namespace Insurance.Api.Application.Services.Insurance
                 SalesPrice = product.SalesPrice
             });
 
-            var insurance = new InsuranceDto()
+            var insurance = new InsuranceDto
             {
                 ProductId = productId,
                 InsuranceCost = productInsuranceDto.InsuranceCost,

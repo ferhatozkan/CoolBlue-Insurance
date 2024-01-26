@@ -16,18 +16,11 @@ namespace Insurance.Tests.Application.Services.Insurance.Chain.SpecialTypeInsura
         }
 
         [Theory, ClassData(typeof(SpecialTypeInsuranceHandlerData))]
-        public void GivenProducts_ShouldCheckProductTypeAndAddInsuranceCost(ProductInsuranceChainTestDto chainDto)
+        public void GivenProducts_ShouldCheckProductTypeAndAddInsuranceCost(double expected, InsuranceDto chainDto)
         {
-            var productInsuranceChainDto = new ProductInsuranceChainDto
-            {
-                ProductId = chainDto.ProductId,
-                ProductTypeId = chainDto.ProductTypeId,
-                SalesPrice = chainDto.SalesPrice,
-                InsuranceCost = chainDto.InsuranceCost
-            };
-            var result = _specialTypeInsuranceHandler.Handle(productInsuranceChainDto);
+            var result = _specialTypeInsuranceHandler.Handle(chainDto);
             Assert.NotNull(result);
-            Assert.Equal(chainDto.ExpectedInsuranceCost, result.InsuranceCost);
+            Assert.Equal(expected, result.InsuranceCost);
         }
     }
 }

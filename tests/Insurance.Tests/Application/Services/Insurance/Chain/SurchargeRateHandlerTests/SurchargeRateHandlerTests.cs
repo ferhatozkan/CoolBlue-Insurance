@@ -21,25 +21,17 @@ namespace Insurance.Tests.Application.Services.Insurance.Chain.SurchargeRateHand
         }
 
         [Theory, ClassData(typeof(SurchargeRateHandlerData))]
-        public void GivenProducts_ShouldCheckProductTypeAndAddInsuranceCost(ProductInsuranceChainTestDto chainDto)
+        public void GivenProducts_ShouldCheckProductTypeAndAddInsuranceCost(int rate, double expected, InsuranceDto chainDto)
         {
-            var productInsuranceChainDto = new ProductInsuranceChainDto
-            {
-                ProductId = chainDto.ProductId,
-                ProductTypeId = chainDto.ProductTypeId,
-                SalesPrice = chainDto.SalesPrice,
-                InsuranceCost = chainDto.InsuranceCost
-            };
-
             _surchargeRateRepository.Setup(repository => repository.GetByProductTypeIdAsync(chainDto.ProductTypeId))
                 .Returns(Task.FromResult(new SurchargeRate
                 {
-                    Rate = chainDto.Rate
+                    Rate = rate
                 }));
 
-            var result = _surchargeRateHandler.Handle(productInsuranceChainDto);
+            var result = _surchargeRateHandler.Handle(chainDto);
             Assert.NotNull(result);
-            Assert.Equal(chainDto.ExpectedInsuranceCost, result.InsuranceCost);
+            Assert.Equal(expected, result.InsuranceCost);
         }
     }
 }

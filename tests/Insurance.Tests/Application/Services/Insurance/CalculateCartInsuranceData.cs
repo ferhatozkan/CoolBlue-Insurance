@@ -19,7 +19,8 @@ namespace Insurance.Tests.Application.Services.Insurance
                     }
                 }
             );
-            Add(0,
+            Add(
+                0,
                 new List<Product>
                 {
                     new Product

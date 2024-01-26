@@ -16,16 +16,16 @@ namespace Insurance.Api.Application.Services.Insurance.Rules
             _logger = logger;
         }
 
-        public override ProductInsuranceChainDto Handle(ProductInsuranceChainDto productInsuranceDto)
+        public override InsuranceDto Handle(InsuranceDto insuranceDto)
         {
-            if (Enum.IsDefined(typeof(SpecialProductType), productInsuranceDto.ProductTypeId))
+            if (Enum.IsDefined(typeof(SpecialProductType), insuranceDto.ProductTypeId))
             {
-                productInsuranceDto.InsuranceCost += InsuranceRuleConstants.SpecialTypeInsuranceCost;
+                insuranceDto.InsuranceCost += InsuranceRuleConstants.SpecialTypeInsuranceCost;
 
-                _logger.LogInformation($"Special product type rule insurance cost was calculated {InsuranceRuleConstants.SpecialTypeInsuranceCost} for product {productInsuranceDto.ProductId} and productTypeId {productInsuranceDto.ProductTypeId}");
+                _logger.LogInformation($"Special product type rule insurance cost was calculated {InsuranceRuleConstants.SpecialTypeInsuranceCost} for product {insuranceDto.ProductId} and productTypeId {insuranceDto.ProductTypeId}");
             }
 
-            return NextChain(productInsuranceDto);
+            return NextChain(insuranceDto);
         }
     }
 }
