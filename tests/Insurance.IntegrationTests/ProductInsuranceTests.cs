@@ -18,6 +18,7 @@ namespace Insurance.IntegrationTests
                 foreach (int id in SurchargeIds)
                 {
                     await SendAsync(HttpMethod.Delete, $"api/surcharge-rates/{id}");
+                    Thread.Sleep(100);
                 }
             }
         }

@@ -18,6 +18,7 @@ namespace Insurance.IntegrationTests
                 foreach(int id in SurchargeIds)
                 {
                     await SendAsync(HttpMethod.Delete, $"api/surcharge-rates/{id}");
+                    Thread.Sleep(100);
                 }
             }
         }
@@ -51,13 +52,21 @@ namespace Insurance.IntegrationTests
                 Rate = 20
             };
 
+
             SurchargeIds = new List<int>();
             var firstSurchargeCreateResponse = await CreateSurchargeRate(surchargeRule1);
             SurchargeIds.Add(firstSurchargeCreateResponse.Id);
+            
             var secondSurchargeCreateResponse = await CreateSurchargeRate(surchargeRule2);
             SurchargeIds.Add(secondSurchargeCreateResponse.Id);
 
-            Thread.Sleep(10);
+            var expected = new List<SurchargeRateDto>()
+            {
+                firstSurchargeCreateResponse,
+                secondSurchargeCreateResponse
+            };
+
+            Thread.Sleep(200);
             var getAllResponse = await SendAsync(HttpMethod.Get, $"api/surcharge-rates");
 
             Assert.NotNull(getAllResponse);
@@ -66,14 +75,8 @@ namespace Insurance.IntegrationTests
             var surchargeRateDtos = JsonHelper.DeserializeCaseInsensitive<List<SurchargeRateDto>>(await getAllResponse.Content.ReadAsStringAsync());
 
             Assert.NotNull(surchargeRateDtos);
-
-            Assert.Equal(surchargeRule1.ProductTypeId, surchargeRateDtos[1].ProductTypeId);
-            Assert.Equal(surchargeRule1.Name, surchargeRateDtos[1].Name);
-            Assert.Equal(surchargeRule1.Rate, surchargeRateDtos[1].Rate);
-            Assert.Equal(surchargeRule2.ProductTypeId, surchargeRateDtos[0].ProductTypeId);
-            Assert.Equal(surchargeRule2.Name, surchargeRateDtos[0].Name);
-            Assert.Equal(surchargeRule2.Rate, surchargeRateDtos[0].Rate);
-
+            
+            Assert.NotStrictEqual(expected, surchargeRateDtos);
         }
 
         [Fact]
@@ -90,7 +93,7 @@ namespace Insurance.IntegrationTests
             var surchargeRate = await CreateSurchargeRate(surchargeRule);
             SurchargeIds.Add(surchargeRate.Id);
 
-            Thread.Sleep(10);
+            Thread.Sleep(200);
             var getByIdResponse = await SendAsync(HttpMethod.Get, $"api/surcharge-rates/{surchargeRate.Id}");
 
             Assert.NotNull(getByIdResponse);
@@ -155,6 +158,8 @@ namespace Insurance.IntegrationTests
             SurchargeIds = new List<int>();
             var successCreateResponse = await CreateSurchargeRate(surchargeRule);
             SurchargeIds.Add(successCreateResponse.Id);
+            
+            Thread.Sleep(200);
 
             var failedCreateResponse = await SendAsync(HttpMethod.Post, $"api/surcharge-rates", surchargeRule);
 

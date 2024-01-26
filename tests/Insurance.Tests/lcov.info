@@ -1,0 +1,1114 @@
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Program.cs
+FN:16,System.Void Insurance.Api.Program::Main(System.String[])
+FNDA:0,System.Void Insurance.Api.Program::Main(System.String[])
+DA:17,0
+DA:18,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:38,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+DA:51,0
+DA:53,0
+DA:55,0
+DA:56,0
+BRDA:40,137,0,0
+BRDA:40,137,1,0
+LF:32
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\DependencyInjection.cs
+FN:12,Microsoft.Extensions.DependencyInjection.IServiceCollection Insurance.Api.Presentation.DependencyInjection::AddPresentation(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection Insurance.Api.Presentation.DependencyInjection::AddPresentation(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+LF:9
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Validators\CartInsuranceItemValidator.cs
+FN:8,System.Void Insurance.Api.Presentation.Validators.CartInsuranceItemValidator::.ctor()
+FNDA:0,System.Void Insurance.Api.Presentation.Validators.CartInsuranceItemValidator::.ctor()
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Validators\CartInsuranceRequestValidator.cs
+FN:7,System.Void Insurance.Api.Presentation.Validators.CartInsuranceRequestValidator::.ctor()
+FNDA:0,System.Void Insurance.Api.Presentation.Validators.CartInsuranceRequestValidator::.ctor()
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Validators\CreateSurchargeRateRequestValidator.cs
+FN:7,System.Void Insurance.Api.Presentation.Validators.CreateSurchargeRateRequestValidator::.ctor()
+FNDA:0,System.Void Insurance.Api.Presentation.Validators.CreateSurchargeRateRequestValidator::.ctor()
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Validators\UpdateSurchargeRateRequestValidator.cs
+FN:7,System.Void Insurance.Api.Presentation.Validators.UpdateSurchargeRateRequestValidator::.ctor()
+FNDA:0,System.Void Insurance.Api.Presentation.Validators.UpdateSurchargeRateRequestValidator::.ctor()
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Models\Responses\ErrorMessage.cs
+FN:4,System.String Insurance.Api.Presentation.Models.Responses.ErrorMessage::get_Message()
+FNDA:0,System.String Insurance.Api.Presentation.Models.Responses.ErrorMessage::get_Message()
+DA:5,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Models\Responses\ErrorMessageResponse.cs
+FN:6,System.Collections.Generic.List`1<Insurance.Api.Presentation.Models.Responses.ErrorMessage> Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse::get_ErrorMessages()
+FNDA:0,System.Collections.Generic.List`1<Insurance.Api.Presentation.Models.Responses.ErrorMessage> Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse::get_ErrorMessages()
+DA:7,0
+FN:14,Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse::Create(System.String)
+FNDA:0,Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse::Create(System.String)
+DA:15,0
+DA:16,0
+DA:17,0
+FN:8,System.Void Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse::.ctor(System.Collections.Generic.List`1<Insurance.Api.Presentation.Models.Responses.ErrorMessage>)
+FNDA:0,System.Void Insurance.Api.Presentation.Models.Responses.ErrorMessageResponse::.ctor(System.Collections.Generic.List`1<Insurance.Api.Presentation.Models.Responses.ErrorMessage>)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+LF:8
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Models\Requests\CartInsuranceItem.cs
+FN:4,System.Int32 Insurance.Api.Presentation.Models.Requests.CartInsuranceItem::get_ProductId()
+FNDA:9,System.Int32 Insurance.Api.Presentation.Models.Requests.CartInsuranceItem::get_ProductId()
+DA:5,9
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Models\Requests\CartInsuranceRequest.cs
+FN:6,System.Collections.Generic.List`1<Insurance.Api.Presentation.Models.Requests.CartInsuranceItem> Insurance.Api.Presentation.Models.Requests.CartInsuranceRequest::get_CartItems()
+FNDA:11,System.Collections.Generic.List`1<Insurance.Api.Presentation.Models.Requests.CartInsuranceItem> Insurance.Api.Presentation.Models.Requests.CartInsuranceRequest::get_CartItems()
+DA:7,11
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Models\Requests\CreateSurchargeRateRequest.cs
+FN:4,System.String Insurance.Api.Presentation.Models.Requests.CreateSurchargeRateRequest::get_Name()
+FNDA:3,System.String Insurance.Api.Presentation.Models.Requests.CreateSurchargeRateRequest::get_Name()
+DA:5,3
+FN:5,System.Int32 Insurance.Api.Presentation.Models.Requests.CreateSurchargeRateRequest::get_Rate()
+FNDA:3,System.Int32 Insurance.Api.Presentation.Models.Requests.CreateSurchargeRateRequest::get_Rate()
+DA:6,3
+FN:6,System.Int32 Insurance.Api.Presentation.Models.Requests.CreateSurchargeRateRequest::get_ProductTypeId()
+FNDA:6,System.Int32 Insurance.Api.Presentation.Models.Requests.CreateSurchargeRateRequest::get_ProductTypeId()
+DA:7,6
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Models\Requests\UpdateSurchargeRateRequest.cs
+FN:4,System.String Insurance.Api.Presentation.Models.Requests.UpdateSurchargeRateRequest::get_Name()
+FNDA:4,System.String Insurance.Api.Presentation.Models.Requests.UpdateSurchargeRateRequest::get_Name()
+DA:5,4
+FN:5,System.Int32 Insurance.Api.Presentation.Models.Requests.UpdateSurchargeRateRequest::get_Rate()
+FNDA:4,System.Int32 Insurance.Api.Presentation.Models.Requests.UpdateSurchargeRateRequest::get_Rate()
+DA:6,4
+FN:6,System.Int32 Insurance.Api.Presentation.Models.Requests.UpdateSurchargeRateRequest::get_ProductTypeId()
+FNDA:7,System.Int32 Insurance.Api.Presentation.Models.Requests.UpdateSurchargeRateRequest::get_ProductTypeId()
+DA:7,7
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Filters\ExceptionFilterAttribute.cs
+FN:20,System.Void Insurance.Api.Presentation.Filters.ExceptionFilterAttribute::OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)
+FNDA:0,System.Void Insurance.Api.Presentation.Filters.ExceptionFilterAttribute::OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)
+DA:21,0
+DA:22,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:43,0
+BRDA:22,18,0,0
+BRDA:22,18,1,0
+BRDA:22,28,1,0
+BRDA:22,28,0,0
+FN:14,System.Void Insurance.Api.Presentation.Filters.ExceptionFilterAttribute::.ctor(Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Presentation.Filters.ExceptionFilterAttribute>)
+FNDA:0,System.Void Insurance.Api.Presentation.Filters.ExceptionFilterAttribute::.ctor(Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Presentation.Filters.ExceptionFilterAttribute>)
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+LF:22
+LH:0
+BRF:4
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Controllers\InsuranceController.cs
+FN:19,System.Void Insurance.Api.Presentation.Controllers.InsuranceController::.ctor(Insurance.Api.Application.Services.Insurance.IInsuranceService)
+FNDA:3,System.Void Insurance.Api.Presentation.Controllers.InsuranceController::.ctor(Insurance.Api.Application.Services.Insurance.IInsuranceService)
+DA:20,3
+DA:21,3
+DA:22,3
+DA:23,3
+FN:48,System.Void Insurance.Api.Presentation.Controllers.InsuranceController/<CalculateCartInsurance>d__3::MoveNext()
+FNDA:1,System.Void Insurance.Api.Presentation.Controllers.InsuranceController/<CalculateCartInsurance>d__3::MoveNext()
+DA:49,1
+DA:50,1
+DA:52,1
+DA:53,1
+FN:33,System.Void Insurance.Api.Presentation.Controllers.InsuranceController/<CalculateInsurance>d__2::MoveNext()
+FNDA:2,System.Void Insurance.Api.Presentation.Controllers.InsuranceController/<CalculateInsurance>d__2::MoveNext()
+DA:34,2
+DA:35,2
+DA:37,1
+DA:38,1
+LF:12
+LH:12
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Presentation\Controllers\SurchargeRateController.cs
+FN:19,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController::.ctor(Insurance.Api.Application.Services.Surcharge.ISurchargeRateService)
+FNDA:10,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController::.ctor(Insurance.Api.Application.Services.Surcharge.ISurchargeRateService)
+DA:20,10
+DA:21,10
+DA:22,10
+DA:23,10
+FN:61,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<Create>d__4::MoveNext()
+FNDA:2,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<Create>d__4::MoveNext()
+DA:62,2
+DA:63,2
+DA:65,1
+DA:66,1
+FN:92,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<DeleteById>d__6::MoveNext()
+FNDA:2,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<DeleteById>d__6::MoveNext()
+DA:93,2
+DA:94,2
+DA:96,1
+DA:97,1
+FN:31,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<GetAll>d__2::MoveNext()
+FNDA:2,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<GetAll>d__2::MoveNext()
+DA:32,2
+DA:33,2
+DA:35,1
+DA:36,1
+FN:46,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<GetById>d__3::MoveNext()
+FNDA:2,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<GetById>d__3::MoveNext()
+DA:47,2
+DA:48,2
+DA:50,1
+DA:51,1
+FN:77,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<UpdateById>d__5::MoveNext()
+FNDA:2,System.Void Insurance.Api.Presentation.Controllers.SurchargeRateController/<UpdateById>d__5::MoveNext()
+DA:78,2
+DA:79,2
+DA:81,1
+DA:82,1
+LF:24
+LH:24
+BRF:0
+BRH:0
+FNF:6
+FNH:6
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Infrastructure\DependencyInjection.cs
+FN:13,Microsoft.Extensions.DependencyInjection.IServiceCollection Insurance.Api.Infrastructure.DependencyInjection::AddInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)
+FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection Insurance.Api.Infrastructure.DependencyInjection::AddInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)
+DA:14,0
+DA:15,0
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+LF:7
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Infrastructure\Repository\DataContext.cs
+FN:8,System.Void Insurance.Api.Infrastructure.Repository.DataContext::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.DataContext::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+FN:11,Microsoft.EntityFrameworkCore.DbSet`1<Insurance.Api.Domain.Models.Entities.SurchargeRate> Insurance.Api.Infrastructure.Repository.DataContext::get_SurchargeRates()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Insurance.Api.Domain.Models.Entities.SurchargeRate> Insurance.Api.Infrastructure.Repository.DataContext::get_SurchargeRates()
+DA:12,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Infrastructure\Repository\SurchargeRateRepository.cs
+FN:11,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository::.ctor(Insurance.Api.Infrastructure.Repository.DataContext)
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository::.ctor(Insurance.Api.Infrastructure.Repository.DataContext)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+FN:32,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<CreateAsync>d__5::MoveNext()
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<CreateAsync>d__5::MoveNext()
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+FN:43,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<DeleteByIdAsync>d__7::MoveNext()
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<DeleteByIdAsync>d__7::MoveNext()
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+FN:17,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<GetAllAsync>d__2::MoveNext()
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<GetAllAsync>d__2::MoveNext()
+DA:18,0
+DA:19,0
+DA:20,0
+FN:22,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<GetByIdAsync>d__3::MoveNext()
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<GetByIdAsync>d__3::MoveNext()
+DA:23,0
+DA:24,0
+DA:25,0
+FN:27,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<GetByProductTypeIdAsync>d__4::MoveNext()
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<GetByProductTypeIdAsync>d__4::MoveNext()
+DA:28,0
+DA:29,0
+DA:30,0
+FN:38,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<SaveAsync>d__6::MoveNext()
+FNDA:0,System.Void Insurance.Api.Infrastructure.Repository.SurchargeRateRepository/<SaveAsync>d__6::MoveNext()
+DA:39,0
+DA:40,0
+DA:41,0
+LF:24
+LH:0
+BRF:0
+BRH:0
+FNF:7
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Infrastructure\Clients\ProductApiClient.cs
+FN:15,System.Void Insurance.Api.Infrastructure.Clients.ProductApiClient::.ctor(Microsoft.Extensions.Options.IOptions`1<Insurance.Api.Infrastructure.Clients.Configuration.ProductApiClientConfiguration>,System.Net.Http.IHttpClientFactory)
+FNDA:4,System.Void Insurance.Api.Infrastructure.Clients.ProductApiClient::.ctor(Microsoft.Extensions.Options.IOptions`1<Insurance.Api.Infrastructure.Clients.Configuration.ProductApiClientConfiguration>,System.Net.Http.IHttpClientFactory)
+DA:16,4
+DA:17,4
+DA:18,4
+DA:19,4
+DA:20,4
+FN:36,System.Void Insurance.Api.Infrastructure.Clients.ProductApiClient/<GetProduct>d__3::MoveNext()
+FNDA:1,System.Void Insurance.Api.Infrastructure.Clients.ProductApiClient/<GetProduct>d__3::MoveNext()
+DA:37,1
+DA:38,1
+DA:40,1
+DA:41,0
+DA:42,0
+DA:45,1
+DA:47,1
+DA:48,1
+BRDA:40,218,0,0
+BRDA:40,218,1,1
+FN:22,System.Void Insurance.Api.Infrastructure.Clients.ProductApiClient/<GetProductType>d__2::MoveNext()
+FNDA:3,System.Void Insurance.Api.Infrastructure.Clients.ProductApiClient/<GetProductType>d__2::MoveNext()
+DA:23,3
+DA:24,3
+DA:26,3
+DA:27,2
+DA:28,2
+DA:31,1
+DA:33,1
+DA:34,1
+BRDA:26,218,0,2
+BRDA:26,218,1,1
+LF:21
+LH:19
+BRF:4
+BRH:3
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Infrastructure\Clients\Models\Product.cs
+FN:7,System.Int32 Insurance.Api.Infrastructure.Clients.Models.Product::get_Id()
+FNDA:17,System.Int32 Insurance.Api.Infrastructure.Clients.Models.Product::get_Id()
+DA:8,17
+FN:10,System.String Insurance.Api.Infrastructure.Clients.Models.Product::get_Name()
+FNDA:3,System.String Insurance.Api.Infrastructure.Clients.Models.Product::get_Name()
+DA:11,3
+FN:13,System.Double Insurance.Api.Infrastructure.Clients.Models.Product::get_SalesPrice()
+FNDA:7,System.Double Insurance.Api.Infrastructure.Clients.Models.Product::get_SalesPrice()
+DA:14,7
+FN:16,System.Int32 Insurance.Api.Infrastructure.Clients.Models.Product::get_ProductTypeId()
+FNDA:11,System.Int32 Insurance.Api.Infrastructure.Clients.Models.Product::get_ProductTypeId()
+DA:17,11
+LF:4
+LH:4
+BRF:0
+BRH:0
+FNF:4
+FNH:4
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Infrastructure\Clients\Models\ProductType.cs
+FN:7,System.Int32 Insurance.Api.Infrastructure.Clients.Models.ProductType::get_Id()
+FNDA:1,System.Int32 Insurance.Api.Infrastructure.Clients.Models.ProductType::get_Id()
+DA:8,1
+FN:10,System.String Insurance.Api.Infrastructure.Clients.Models.ProductType::get_Name()
+FNDA:1,System.String Insurance.Api.Infrastructure.Clients.Models.ProductType::get_Name()
+DA:11,1
+FN:13,System.Boolean Insurance.Api.Infrastructure.Clients.Models.ProductType::get_CanBeInsured()
+FNDA:5,System.Boolean Insurance.Api.Infrastructure.Clients.Models.ProductType::get_CanBeInsured()
+DA:14,5
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Infrastructure\Clients\Configuration\ProductApiClientConfiguration.cs
+FN:4,System.String Insurance.Api.Infrastructure.Clients.Configuration.ProductApiClientConfiguration::get_Url()
+FNDA:12,System.String Insurance.Api.Infrastructure.Clients.Configuration.ProductApiClientConfiguration::get_Url()
+DA:5,12
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Domain\Models\Entities\ProductInsuranceRule.cs
+FN:4,System.Nullable`1<System.Int32> Insurance.Api.Domain.Models.Entities.ProductInsuranceRule::get_MinSalesPrice()
+FNDA:21,System.Nullable`1<System.Int32> Insurance.Api.Domain.Models.Entities.ProductInsuranceRule::get_MinSalesPrice()
+DA:5,21
+FN:5,System.Nullable`1<System.Int32> Insurance.Api.Domain.Models.Entities.ProductInsuranceRule::get_MaxSalesPrice()
+FNDA:41,System.Nullable`1<System.Int32> Insurance.Api.Domain.Models.Entities.ProductInsuranceRule::get_MaxSalesPrice()
+DA:6,41
+FN:6,System.Int32 Insurance.Api.Domain.Models.Entities.ProductInsuranceRule::get_InsurancePrice()
+FNDA:25,System.Int32 Insurance.Api.Domain.Models.Entities.ProductInsuranceRule::get_InsurancePrice()
+DA:7,25
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Domain\Models\Entities\SurchargeRate.cs
+FN:4,System.Int32 Insurance.Api.Domain.Models.Entities.SurchargeRate::get_Id()
+FNDA:7,System.Int32 Insurance.Api.Domain.Models.Entities.SurchargeRate::get_Id()
+DA:5,7
+FN:5,System.String Insurance.Api.Domain.Models.Entities.SurchargeRate::get_Name()
+FNDA:5,System.String Insurance.Api.Domain.Models.Entities.SurchargeRate::get_Name()
+DA:6,5
+FN:6,System.Int32 Insurance.Api.Domain.Models.Entities.SurchargeRate::get_Rate()
+FNDA:11,System.Int32 Insurance.Api.Domain.Models.Entities.SurchargeRate::get_Rate()
+DA:7,11
+FN:7,System.Int32 Insurance.Api.Domain.Models.Entities.SurchargeRate::get_ProductTypeId()
+FNDA:5,System.Int32 Insurance.Api.Domain.Models.Entities.SurchargeRate::get_ProductTypeId()
+DA:8,5
+LF:4
+LH:4
+BRF:0
+BRH:0
+FNF:4
+FNH:4
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Domain\Constants\InsuranceRuleConstants.cs
+FN:8,System.Collections.Generic.List`1<Insurance.Api.Domain.Models.Entities.ProductInsuranceRule> Insurance.Api.Domain.Constants.InsuranceRuleConstants::get_ProductInsuranceRules()
+FNDA:5,System.Collections.Generic.List`1<Insurance.Api.Domain.Models.Entities.ProductInsuranceRule> Insurance.Api.Domain.Constants.InsuranceRuleConstants::get_ProductInsuranceRules()
+DA:9,5
+DA:10,5
+DA:11,5
+DA:12,5
+DA:13,5
+DA:14,5
+DA:15,5
+DA:16,5
+DA:17,5
+DA:18,5
+DA:19,5
+DA:20,5
+DA:21,5
+DA:22,5
+DA:23,5
+DA:24,5
+DA:25,5
+DA:26,5
+DA:27,5
+FN:28,System.Collections.Generic.Dictionary`2<Insurance.Api.Domain.Models.Enums.FrequentlyLostProductType,System.Double> Insurance.Api.Domain.Constants.InsuranceRuleConstants::get_CartInsuranceRules()
+FNDA:2,System.Collections.Generic.Dictionary`2<Insurance.Api.Domain.Models.Enums.FrequentlyLostProductType,System.Double> Insurance.Api.Domain.Constants.InsuranceRuleConstants::get_CartInsuranceRules()
+DA:29,2
+DA:30,2
+DA:31,2
+DA:32,2
+FN:33,System.Double Insurance.Api.Domain.Constants.InsuranceRuleConstants::get_SpecialTypeInsuranceCost()
+FNDA:4,System.Double Insurance.Api.Domain.Constants.InsuranceRuleConstants::get_SpecialTypeInsuranceCost()
+DA:34,4
+LF:24
+LH:24
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\DependencyInjection.cs
+FN:11,Microsoft.Extensions.DependencyInjection.IServiceCollection Insurance.Api.Application.DependencyInjection::AddApplication(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection Insurance.Api.Application.DependencyInjection::AddApplication(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:23,0
+DA:24,0
+LF:10
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Surcharge\SurchargeRateService.cs
+FN:20,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService::.ctor(Insurance.Api.Application.Repositories.ISurchargeRateRepository,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Surcharge.SurchargeRateService>)
+FNDA:11,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService::.ctor(Insurance.Api.Application.Repositories.ISurchargeRateRepository,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Surcharge.SurchargeRateService>)
+DA:21,11
+DA:22,11
+DA:23,11
+DA:24,11
+DA:25,11
+FN:31,Insurance.Api.Application.Models.Dto.SurchargeRateDto Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<>c::<GetAll>b__3_0(Insurance.Api.Domain.Models.Entities.SurchargeRate)
+FNDA:1,Insurance.Api.Application.Models.Dto.SurchargeRateDto Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<>c::<GetAll>b__3_0(Insurance.Api.Domain.Models.Entities.SurchargeRate)
+DA:32,1
+DA:33,1
+DA:34,1
+DA:35,1
+DA:36,1
+DA:37,1
+DA:38,1
+FN:58,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<Create>d__5::MoveNext()
+FNDA:2,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<Create>d__5::MoveNext()
+DA:59,2
+DA:60,2
+DA:62,2
+DA:63,2
+DA:64,1
+DA:66,1
+DA:67,1
+DA:68,1
+DA:69,1
+DA:70,1
+DA:71,1
+DA:73,1
+DA:75,1
+DA:76,1
+DA:77,1
+DA:78,1
+DA:79,1
+DA:80,1
+DA:81,1
+DA:82,1
+BRDA:63,281,0,1
+BRDA:63,281,1,1
+FN:84,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<DeleteById>d__6::MoveNext()
+FNDA:2,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<DeleteById>d__6::MoveNext()
+DA:85,2
+DA:86,2
+DA:88,2
+DA:89,2
+DA:90,1
+DA:92,1
+DA:93,1
+BRDA:89,269,0,1
+BRDA:89,269,1,1
+FN:26,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<GetAll>d__3::MoveNext()
+FNDA:2,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<GetAll>d__3::MoveNext()
+DA:27,2
+DA:28,2
+DA:30,2
+DA:39,1
+FN:41,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<GetById>d__4::MoveNext()
+FNDA:2,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<GetById>d__4::MoveNext()
+DA:42,2
+DA:43,2
+DA:45,2
+DA:46,2
+DA:47,1
+DA:49,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,1
+DA:54,1
+DA:55,1
+DA:56,1
+BRDA:46,259,0,1
+BRDA:46,259,1,1
+FN:95,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<UpdateById>d__7::MoveNext()
+FNDA:3,System.Void Insurance.Api.Application.Services.Surcharge.SurchargeRateService/<UpdateById>d__7::MoveNext()
+DA:96,3
+DA:97,3
+DA:99,3
+DA:101,3
+DA:102,1
+DA:104,2
+DA:105,2
+DA:106,1
+DA:108,1
+DA:109,1
+DA:110,1
+DA:112,1
+DA:113,1
+DA:114,1
+DA:115,1
+DA:116,1
+DA:117,1
+DA:118,1
+DA:119,1
+DA:120,1
+BRDA:101,317,0,1
+BRDA:101,317,1,2
+BRDA:105,533,0,1
+BRDA:105,533,1,1
+BRDA:105,569,0,1
+BRDA:105,569,1,1
+LF:76
+LH:76
+BRF:12
+BRH:12
+FNF:7
+FNH:7
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Insurance\InsuranceService.cs
+FN:84,System.Double Insurance.Api.Application.Services.Insurance.InsuranceService::ApplyCartInsurance(System.Collections.Generic.List`1<System.Int32>)
+FNDA:2,System.Double Insurance.Api.Application.Services.Insurance.InsuranceService::ApplyCartInsurance(System.Collections.Generic.List`1<System.Int32>)
+DA:85,2
+DA:86,2
+DA:87,10
+DA:88,2
+DA:89,2
+DA:90,2
+DA:91,2
+DA:92,2
+DA:93,2
+BRDA:87,54,1,2
+BRDA:87,54,0,2
+FN:20,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService::.ctor(Insurance.Api.Application.Clients.IProductApiClient,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.InsuranceService>,Insurance.Api.Application.Services.Insurance.Chain.IInsuranceChainService)
+FNDA:4,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService::.ctor(Insurance.Api.Application.Clients.IProductApiClient,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.InsuranceService>,Insurance.Api.Application.Services.Insurance.Chain.IInsuranceChainService)
+DA:21,4
+DA:22,4
+DA:23,4
+DA:24,4
+DA:25,4
+DA:26,4
+DA:27,4
+DA:28,4
+DA:29,4
+FN:47,System.Int32 Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_0(Insurance.Api.Presentation.Models.Requests.CartInsuranceItem)
+FNDA:6,System.Int32 Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_0(Insurance.Api.Presentation.Models.Requests.CartInsuranceItem)
+DA:48,6
+FN:57,System.Double Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_1(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:4,System.Double Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_1(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:58,4
+FN:61,System.Int32 Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_2(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:4,System.Int32 Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_2(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:62,4
+FN:73,Insurance.Api.Application.Models.Dto.CartInsuranceItemDto Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_3(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:2,Insurance.Api.Application.Models.Dto.CartInsuranceItemDto Insurance.Api.Application.Services.Insurance.InsuranceService/<>c::<CalculateCartInsurance>b__5_3(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:74,2
+DA:75,2
+DA:76,2
+DA:77,2
+DA:78,2
+FN:46,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService/<CalculateCartInsurance>d__5::MoveNext()
+FNDA:3,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService/<CalculateCartInsurance>d__5::MoveNext()
+DA:47,3
+DA:49,3
+DA:51,3
+DA:52,14
+DA:53,3
+DA:54,3
+DA:55,2
+DA:56,2
+DA:60,2
+DA:63,2
+DA:65,2
+DA:67,2
+DA:69,2
+DA:71,2
+DA:72,2
+DA:73,2
+DA:79,2
+DA:81,2
+DA:82,2
+BRDA:52,418,1,3
+BRDA:52,418,0,2
+FN:95,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService/<CalculateInsurance>d__7::MoveNext()
+FNDA:4,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService/<CalculateInsurance>d__7::MoveNext()
+DA:96,4
+DA:97,4
+DA:99,2
+DA:100,2
+DA:101,2
+DA:102,2
+DA:103,2
+DA:104,2
+DA:105,2
+DA:107,2
+DA:108,2
+DA:109,2
+DA:110,2
+DA:111,2
+DA:112,2
+DA:114,2
+DA:115,2
+FN:31,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService/<CalculateProductInsurance>d__4::MoveNext()
+FNDA:1,System.Void Insurance.Api.Application.Services.Insurance.InsuranceService/<CalculateProductInsurance>d__4::MoveNext()
+DA:32,1
+DA:33,1
+DA:35,1
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:43,0
+DA:44,0
+LF:72
+LH:65
+BRF:4
+BRH:4
+FNF:9
+FNH:9
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Insurance\Rules\CanBeInsuredHandler.cs
+FN:19,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:2,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:20,2
+DA:21,2
+DA:23,2
+DA:24,1
+DA:25,1
+DA:27,1
+DA:29,1
+DA:32,1
+DA:33,2
+BRDA:23,35,0,1
+BRDA:23,35,1,1
+FN:12,System.Void Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler::.ctor(Insurance.Api.Application.Clients.IProductApiClient,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler>)
+FNDA:2,System.Void Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler::.ctor(Insurance.Api.Application.Clients.IProductApiClient,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler>)
+DA:13,2
+DA:14,2
+DA:15,2
+DA:16,2
+DA:17,2
+LF:14
+LH:14
+BRF:2
+BRH:2
+FNF:2
+FNH:2
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Insurance\Rules\PriceRuleInsuranceHandler.cs
+FN:19,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:5,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:20,5
+DA:21,5
+DA:22,16
+DA:24,5
+DA:26,5
+DA:28,5
+DA:29,5
+FN:31,System.Boolean Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler::FindInsuranceRule(Insurance.Api.Domain.Models.Entities.ProductInsuranceRule,System.Double)
+FNDA:11,System.Boolean Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler::FindInsuranceRule(Insurance.Api.Domain.Models.Entities.ProductInsuranceRule,System.Double)
+DA:32,11
+DA:33,11
+DA:34,0
+DA:36,11
+DA:37,11
+DA:38,5
+DA:39,5
+DA:42,6
+DA:43,11
+BRDA:33,15,0,2
+BRDA:33,15,1,9
+BRDA:33,39,0,0
+BRDA:33,39,1,11
+BRDA:36,62,0,9
+BRDA:36,79,0,0
+BRDA:36,79,1,9
+BRDA:36,62,1,5
+BRDA:36,125,0,5
+BRDA:36,141,0,4
+BRDA:36,158,0,0
+BRDA:36,158,1,4
+BRDA:36,141,1,1
+BRDA:36,125,1,6
+BRDA:36,215,0,5
+BRDA:36,215,1,6
+FN:13,System.Void Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler::.ctor(Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler>)
+FNDA:5,System.Void Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler::.ctor(Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler>)
+DA:14,5
+DA:15,5
+DA:16,5
+DA:17,5
+LF:20
+LH:19
+BRF:16
+BRH:13
+FNF:3
+FNH:3
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Insurance\Rules\SpecialTypeInsuranceHandler.cs
+FN:19,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:3,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:20,3
+DA:21,3
+DA:22,2
+DA:23,2
+DA:25,2
+DA:26,2
+DA:28,3
+DA:29,3
+BRDA:21,29,0,2
+BRDA:21,29,1,3
+FN:13,System.Void Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler::.ctor(Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler>)
+FNDA:3,System.Void Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler::.ctor(Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler>)
+DA:14,3
+DA:15,3
+DA:16,3
+DA:17,3
+LF:12
+LH:12
+BRF:2
+BRH:2
+FNF:2
+FNH:2
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Insurance\Rules\SurchargeRateHandler.cs
+FN:19,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:3,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:20,3
+DA:21,3
+DA:22,3
+DA:23,3
+DA:24,3
+DA:26,3
+DA:28,3
+DA:29,3
+DA:32,3
+DA:33,3
+BRDA:22,30,0,3
+BRDA:22,30,1,3
+FN:12,System.Void Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler::.ctor(Insurance.Api.Application.Repositories.ISurchargeRateRepository,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler>)
+FNDA:3,System.Void Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler::.ctor(Insurance.Api.Application.Repositories.ISurchargeRateRepository,Microsoft.Extensions.Logging.ILogger`1<Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler>)
+DA:13,3
+DA:14,3
+DA:15,3
+DA:16,3
+DA:17,3
+LF:15
+LH:15
+BRF:2
+BRH:2
+FNF:2
+FNH:2
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Insurance\Chain\AbstractHandler.cs
+FN:10,Insurance.Api.Application.Services.Insurance.Chain.IHandler Insurance.Api.Application.Services.Insurance.Chain.AbstractHandler::SetNext(Insurance.Api.Application.Services.Insurance.Chain.IHandler)
+FNDA:0,Insurance.Api.Application.Services.Insurance.Chain.IHandler Insurance.Api.Application.Services.Insurance.Chain.AbstractHandler::SetNext(Insurance.Api.Application.Services.Insurance.Chain.IHandler)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+FN:16,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Chain.AbstractHandler::NextChain(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:12,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Chain.AbstractHandler::NextChain(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:17,12
+DA:18,12
+DA:19,12
+DA:20,12
+DA:23,0
+DA:24,12
+BRDA:18,12,0,12
+BRDA:18,12,1,0
+LF:10
+LH:5
+BRF:2
+BRH:1
+FNF:2
+FNH:1
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Services\Insurance\Chain\InsuranceChainService.cs
+FN:24,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Chain.InsuranceChainService::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+FNDA:0,Insurance.Api.Application.Models.Dto.InsuranceDto Insurance.Api.Application.Services.Insurance.Chain.InsuranceChainService::Handle(Insurance.Api.Application.Models.Dto.InsuranceDto)
+DA:25,0
+DA:26,0
+DA:27,0
+FN:10,System.Void Insurance.Api.Application.Services.Insurance.Chain.InsuranceChainService::.ctor(Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler,Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler,Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler,Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler)
+FNDA:0,System.Void Insurance.Api.Application.Services.Insurance.Chain.InsuranceChainService::.ctor(Insurance.Api.Application.Services.Insurance.Rules.CanBeInsuredHandler,Insurance.Api.Application.Services.Insurance.Rules.PriceRuleInsuranceHandler,Insurance.Api.Application.Services.Insurance.Rules.SpecialTypeInsuranceHandler,Insurance.Api.Application.Services.Insurance.Rules.SurchargeRateHandler)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:21,0
+DA:22,0
+LF:14
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Models\Dto\CartInsuranceDto.cs
+FN:6,System.Double Insurance.Api.Application.Models.Dto.CartInsuranceDto::get_TotalInsuranceCost()
+FNDA:6,System.Double Insurance.Api.Application.Models.Dto.CartInsuranceDto::get_TotalInsuranceCost()
+DA:7,6
+FN:7,System.Collections.Generic.List`1<Insurance.Api.Application.Models.Dto.CartInsuranceItemDto> Insurance.Api.Application.Models.Dto.CartInsuranceDto::get_CartInsuranceItems()
+FNDA:5,System.Collections.Generic.List`1<Insurance.Api.Application.Models.Dto.CartInsuranceItemDto> Insurance.Api.Application.Models.Dto.CartInsuranceDto::get_CartInsuranceItems()
+DA:8,5
+LF:2
+LH:2
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Models\Dto\CartInsuranceItemDto.cs
+FN:4,System.Int32 Insurance.Api.Application.Models.Dto.CartInsuranceItemDto::get_ProductId()
+FNDA:4,System.Int32 Insurance.Api.Application.Models.Dto.CartInsuranceItemDto::get_ProductId()
+DA:5,4
+FN:5,System.Double Insurance.Api.Application.Models.Dto.CartInsuranceItemDto::get_InsuranceCost()
+FNDA:4,System.Double Insurance.Api.Application.Models.Dto.CartInsuranceItemDto::get_InsuranceCost()
+DA:6,4
+LF:2
+LH:2
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Models\Dto\InsuranceDto.cs
+FN:4,System.Int32 Insurance.Api.Application.Models.Dto.InsuranceDto::get_ProductId()
+FNDA:52,System.Int32 Insurance.Api.Application.Models.Dto.InsuranceDto::get_ProductId()
+DA:5,52
+FN:5,System.Double Insurance.Api.Application.Models.Dto.InsuranceDto::get_InsuranceCost()
+FNDA:79,System.Double Insurance.Api.Application.Models.Dto.InsuranceDto::get_InsuranceCost()
+DA:6,79
+FN:6,System.Int32 Insurance.Api.Application.Models.Dto.InsuranceDto::get_ProductTypeId()
+FNDA:63,System.Int32 Insurance.Api.Application.Models.Dto.InsuranceDto::get_ProductTypeId()
+DA:7,63
+FN:7,System.Double Insurance.Api.Application.Models.Dto.InsuranceDto::get_SalesPrice()
+FNDA:51,System.Double Insurance.Api.Application.Models.Dto.InsuranceDto::get_SalesPrice()
+DA:8,51
+LF:4
+LH:4
+BRF:0
+BRH:0
+FNF:4
+FNH:4
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Models\Dto\ProductInsuranceDto.cs
+FN:4,System.Int32 Insurance.Api.Application.Models.Dto.ProductInsuranceDto::get_ProductId()
+FNDA:2,System.Int32 Insurance.Api.Application.Models.Dto.ProductInsuranceDto::get_ProductId()
+DA:5,2
+FN:5,System.Double Insurance.Api.Application.Models.Dto.ProductInsuranceDto::get_InsuranceCost()
+FNDA:2,System.Double Insurance.Api.Application.Models.Dto.ProductInsuranceDto::get_InsuranceCost()
+DA:6,2
+LF:2
+LH:2
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Models\Dto\SurchargeRateDto.cs
+FN:4,System.Int32 Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_Id()
+FNDA:3,System.Int32 Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_Id()
+DA:5,3
+FN:5,System.String Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_Name()
+FNDA:3,System.String Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_Name()
+DA:6,3
+FN:6,System.Double Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_Rate()
+FNDA:3,System.Double Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_Rate()
+DA:7,3
+FN:7,System.Int32 Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_ProductTypeId()
+FNDA:3,System.Int32 Insurance.Api.Application.Models.Dto.SurchargeRateDto::get_ProductTypeId()
+DA:8,3
+LF:4
+LH:4
+BRF:0
+BRH:0
+FNF:4
+FNH:4
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Helpers\JsonHelper.cs
+FN:7,T Insurance.Api.Application.Extensions.JsonHelper::DeserializeCaseInsensitive(System.String)
+FNDA:2,T Insurance.Api.Application.Extensions.JsonHelper::DeserializeCaseInsensitive(System.String)
+DA:8,2
+DA:9,2
+DA:10,2
+DA:11,2
+DA:12,2
+DA:13,2
+LF:6
+LH:6
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Exceptions\BadRequestException.cs
+FN:6,System.Void Insurance.Api.Application.Exceptions.BadRequestException::.ctor(System.String,System.Exception)
+FNDA:2,System.Void Insurance.Api.Application.Exceptions.BadRequestException::.ctor(System.String,System.Exception)
+DA:7,2
+DA:8,2
+DA:9,2
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Exceptions\BaseBusinessException.cs
+FN:6,System.Void Insurance.Api.Application.Exceptions.BaseBusinessException::.ctor(System.String,System.Exception)
+FNDA:7,System.Void Insurance.Api.Application.Exceptions.BaseBusinessException::.ctor(System.String,System.Exception)
+DA:7,7
+DA:8,7
+DA:9,7
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:C:\Git\CoolBlue-Insurance\src\Insurance.Api\Application\Exceptions\NotFoundException.cs
+FN:6,System.Void Insurance.Api.Application.Exceptions.NotFoundException::.ctor(System.String,System.Exception)
+FNDA:5,System.Void Insurance.Api.Application.Exceptions.NotFoundException::.ctor(System.String,System.Exception)
+DA:7,5
+DA:8,5
+DA:9,5
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
