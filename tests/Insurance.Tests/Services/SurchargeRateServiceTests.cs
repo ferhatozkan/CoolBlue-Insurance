@@ -7,6 +7,8 @@ using Xunit;
 using Insurance.Api.Models.Entities;
 using System.Collections.Generic;
 using Insurance.Api.Models.Request;
+using Microsoft.Extensions.Logging;
+using Insurance.Api.Exceptions;
 
 namespace Insurance.Tests.Services
 {
@@ -18,7 +20,7 @@ namespace Insurance.Tests.Services
         public SurchargeRateServiceTests()
         {
             _surchargeRateRepository = new Mock<ISurchargeRateRepository>();
-            _surchargeRateService = new SurchargeRateService(_surchargeRateRepository.Object);
+            _surchargeRateService = new SurchargeRateService(_surchargeRateRepository.Object, Mock.Of<ILogger<SurchargeRateService>>());
         }
 
         [Fact]
@@ -58,7 +60,7 @@ namespace Insurance.Tests.Services
 
             await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateService.GetById(1));
         }
-        
+
         [Fact]
         public async Task GivenCreateAsyncSuccess_CreateShouldReturnSurchargeRate()
         {
@@ -121,6 +123,15 @@ namespace Insurance.Tests.Services
                 .ThrowsAsync(new Exception());
 
             await Assert.ThrowsAsync<Exception>(async () => await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest()));
+        }
+
+        [Fact]
+        public async Task GivenGetByIdAsyncReturnsNull_UpdateByIdShouldThrowNotFoundException()
+        {
+            _surchargeRateRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult((SurchargeRate)null));
+
+            await Assert.ThrowsAsync<NotFoundException>(async () => await _surchargeRateService.UpdateById(1, new UpdateSurchargeRateRequest()));
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Insurance.Api.Services.Insurance;
 using Insurance.Api.Models.Dto;
+using Insurance.Api.Models.Request;
 
 namespace Insurance.Tests.Controllers
 {
@@ -58,23 +59,23 @@ namespace Insurance.Tests.Controllers
             var cartInsurance = new CartInsuranceDto
             {
                 TotalInsuranceCost = 3000,
-                Products = new List<InsuranceDto> 
+                CartInsuranceItems = new List<CartInsuranceItemDto> 
                 {
-                    new InsuranceDto { ProductId = 1, InsuranceCost = 500 },
-                    new InsuranceDto { ProductId = 1, InsuranceCost = 2500}
+                    new CartInsuranceItemDto { ProductId = 1, InsuranceCost = 500 },
+                    new CartInsuranceItemDto { ProductId = 1, InsuranceCost = 2500}
                 }
             };
 
-            _insuranceService.Setup(service => service.CalculateCartInsurance(It.IsAny<List<int>>()))
+            _insuranceService.Setup(service => service.CalculateCartInsurance(It.IsAny<CartRequest>()))
                 .Returns(Task.FromResult(cartInsurance));
 
-            var result = await _insuranceController.CalculateCartInsurance(new List<int>{1,2});
+            var result = await _insuranceController.CalculateCartInsurance(new CartRequest());
 
             var okObjectResult = Assert.IsType<OkObjectResult>(result);
             var response = Assert.IsType<CartInsuranceDto>(okObjectResult.Value);
 
             Assert.Equal(3000, response.TotalInsuranceCost);
-            Assert.Equal(cartInsurance.Products, response.Products);
+            Assert.Equal(cartInsurance.CartInsuranceItems, response.CartInsuranceItems);
         }
     }
 }

@@ -1,10 +1,13 @@
-﻿using Insurance.Api.Models.Dto;
+﻿using Insurance.Api.Exceptions;
+using Insurance.Api.Models.Dto;
 using Insurance.Api.Models.Entities;
 using Insurance.Api.Models.Request;
 using Insurance.Api.Repository;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Insurance.Api.Services.Surcharge
@@ -13,12 +16,17 @@ namespace Insurance.Api.Services.Surcharge
     {
         private readonly ISurchargeRateRepository _surchargeRateRepository;
 
-        public SurchargeRateService(ISurchargeRateRepository surchargeRateRepository)
+        private readonly ILogger<SurchargeRateService> _logger;
+
+        public SurchargeRateService(ISurchargeRateRepository surchargeRateRepository, ILogger<SurchargeRateService> logger)
         {
             _surchargeRateRepository = surchargeRateRepository;
+            _logger = logger;
         }
         public async Task<List<SurchargeRateDto>> GetAll()
         {
+            _logger.LogInformation($"GetAll was invoked on {DateTime.UtcNow}");
+
             var surchargeRates = await _surchargeRateRepository.GetAllAsync();
             return surchargeRates.Select(sr => new SurchargeRateDto
             {
@@ -31,6 +39,8 @@ namespace Insurance.Api.Services.Surcharge
 
         public async Task<SurchargeRateDto> GetById(int id)
         {
+            _logger.LogInformation($"GetById was invoked with Id {id} parameter on {DateTime.UtcNow}");
+
             var surchargeRate = await _surchargeRateRepository.GetByIdAsync(id);
             return new SurchargeRateDto
             {
@@ -43,6 +53,8 @@ namespace Insurance.Api.Services.Surcharge
 
         public async Task<SurchargeRateDto> Create(CreateSurchargeRateRequest request)
         {
+            _logger.LogInformation($"Create was invoked with CreateSurchargeRateRequest {JsonSerializer.Serialize(request)} parameter on {DateTime.UtcNow}");
+
             var surchargeRate = new SurchargeRate
             {
                 Name = request.Name,
@@ -63,15 +75,19 @@ namespace Insurance.Api.Services.Surcharge
 
         public async Task DeleteById(int id)
         {
+            _logger.LogInformation($"DeleteById was invoked with Id {id} parameter on {DateTime.UtcNow}");
+
             await _surchargeRateRepository.DeleteByIdAsync(id);
         }
 
         public async Task<SurchargeRateDto> UpdateById(int id, UpdateSurchargeRateRequest request)
         {
+            _logger.LogInformation($"UpdateById was invoked with Id {id} and UpdateSurchargeRateRequest {JsonSerializer.Serialize(request)} parameters on {DateTime.UtcNow}");
+
             var surchargeRate = await _surchargeRateRepository.GetByIdAsync(id);
 
             if (surchargeRate == null)
-                throw new Exception();
+                throw new NotFoundException($"Surcharge rate with Id {id} cannot be found");
 
             surchargeRate.Name = request.Name;
             surchargeRate.Rate = request.Rate;

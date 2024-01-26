@@ -1,5 +1,5 @@
 ﻿using Insurance.Api.Models.Dto;
-using System.Collections.Generic;
+using Insurance.Api.Models.Request;
 using System.Threading.Tasks;
 
 namespace Insurance.Api.Services.Insurance
@@ -7,6 +7,6 @@ namespace Insurance.Api.Services.Insurance
     public interface IInsuranceService
     {
         Task<InsuranceDto> CalculateProductInsurance(int productId);
-        Task<CartInsuranceDto> CalculateCartInsurance(List<int> productIds);
+        Task<CartInsuranceDto> CalculateCartInsurance(CartRequest cartRequest);
     }
 }

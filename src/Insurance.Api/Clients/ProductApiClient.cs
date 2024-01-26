@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Insurance.Api.Clients.Models;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Insurance.Api.Exceptions;
 
 namespace Insurance.Api.Clients
 {
@@ -23,7 +24,7 @@ namespace Insurance.Api.Clients
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"Product Type with id {productTypeId} not found");
+                throw new NotFoundException($"Product Type with id {productTypeId} not found");
             }
 
             var productTypeDto = JsonSerializer.Deserialize<ProductTypeDto>(await response.Content.ReadAsStringAsync());
@@ -37,7 +38,7 @@ namespace Insurance.Api.Clients
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"Product with id {productId} not found");
+                throw new NotFoundException($"Product with id {productId} not found");
             }
 
             var productDto = JsonSerializer.Deserialize<ProductDto>(await response.Content.ReadAsStringAsync());

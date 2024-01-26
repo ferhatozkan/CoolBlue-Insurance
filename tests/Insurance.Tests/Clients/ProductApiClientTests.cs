@@ -1,5 +1,6 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Clients.Configuration;
+using Insurance.Api.Exceptions;
 using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Protected;
@@ -42,12 +43,12 @@ namespace Insurance.Tests.Clients
         }
 
         [Fact]
-        public async Task GivenProductTypeByIdReturns404_ShouldThrowException()
+        public async Task GivenProductTypeByIdReturns404_ShouldThrowNotFoundException()
         {
             var content = new StringContent("{\r\n  \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.4\",\r\n  \"title\": \"Not Found\",\r\n  \"status\": 404\r\n \"traceId\": 1\r\n}");
             MockHttpClientCreator(HttpStatusCode.NotFound, content);
 
-            await Assert.ThrowsAsync<Exception>(async() => await _productApiClient.GetProductType(100));
+            await Assert.ThrowsAsync<NotFoundException>(async() => await _productApiClient.GetProductType(100));
         }
 
         [Fact]
@@ -62,12 +63,12 @@ namespace Insurance.Tests.Clients
         }
 
         [Fact]
-        public async Task GivenProductByIdReturns404_ShouldThrowException()
+        public async Task GivenProductByIdReturns404_ShouldThrowNotFoundException()
         {
             var content = new StringContent("{\r\n  \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.4\",\r\n  \"title\": \"Not Found\",\r\n  \"status\": 404\r\n \"traceId\": 1\r\n}");
             MockHttpClientCreator(HttpStatusCode.NotFound, content);
 
-            await Assert.ThrowsAsync<Exception>(async () => await _productApiClient.GetProductType(100));
+            await Assert.ThrowsAsync<NotFoundException>(async () => await _productApiClient.GetProductType(100));
         }
 
         private void MockHttpClientCreator(HttpStatusCode statusCode, HttpContent content)

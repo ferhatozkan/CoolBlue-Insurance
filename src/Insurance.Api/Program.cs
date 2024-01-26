@@ -1,6 +1,9 @@
+using FluentValidation.AspNetCore;
 using Insurance.Api.Clients;
+using Insurance.Api.Filters;
 using Insurance.Api.Repository;
 using Insurance.Api.Services;
+using Insurance.Api.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +18,9 @@ namespace Insurance.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options => options.Filters.Add(typeof(InsuranceExceptionFilterAttribute)));
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidators();
             builder.Services.AddClients(builder.Configuration);
             builder.Services.AddServices();
             builder.Services.AddRepositories();
