@@ -40,7 +40,7 @@ namespace Insurance.Api.Services.Surcharge
 
         public async Task<SurchargeRateDto> GetById(int id)
         {
-            _logger.LogInformation($"GetById was invoked with Id {id} parameter on {DateTime.UtcNow}");
+            _logger.LogInformation($"GetById was invoked with id {id} on {DateTime.UtcNow}");
 
             var surchargeRate = await _surchargeRateRepository.GetByIdAsync(id);
             if(surchargeRate == null)
@@ -57,11 +57,11 @@ namespace Insurance.Api.Services.Surcharge
 
         public async Task<SurchargeRateDto> Create(CreateSurchargeRateRequest request)
         {
-            _logger.LogInformation($"Create was invoked with CreateSurchargeRateRequest {JsonSerializer.Serialize(request)} parameter on {DateTime.UtcNow}");
+            _logger.LogInformation($"Create was invoked with CreateSurchargeRateRequest {JsonSerializer.Serialize(request)} on {DateTime.UtcNow}");
 
             var surchargeRate = await _surchargeRateRepository.GetByProductTypeIdAsync(request.ProductTypeId);
             if (surchargeRate != null)
-                throw new BadRequestException($"SurchargeRate with productType id {request.ProductTypeId} already exists");
+                throw new BadRequestException($"SurchargeRate with ProductTypeId {request.ProductTypeId} already exists");
 
             var newSurchargeRate = new SurchargeRate
             {
@@ -83,7 +83,7 @@ namespace Insurance.Api.Services.Surcharge
 
         public async Task DeleteById(int id)
         {
-            _logger.LogInformation($"DeleteById was invoked with Id {id} parameter on {DateTime.UtcNow}");
+            _logger.LogInformation($"DeleteById was invoked with id {id} on {DateTime.UtcNow}");
 
             var surchargeRule = await _surchargeRateRepository.GetByIdAsync(id);
             if (surchargeRule == null)
@@ -94,7 +94,7 @@ namespace Insurance.Api.Services.Surcharge
 
         public async Task<SurchargeRateDto> UpdateById(int id, UpdateSurchargeRateRequest request)
         {
-            _logger.LogInformation($"UpdateById was invoked with Id {id} and UpdateSurchargeRateRequest {JsonSerializer.Serialize(request)} parameters on {DateTime.UtcNow}");
+            _logger.LogInformation($"UpdateById was invoked with id {id} and UpdateSurchargeRateRequest {JsonSerializer.Serialize(request)} on {DateTime.UtcNow}");
 
             var surchargeRate = await _surchargeRateRepository.GetByIdAsync(id);
 
@@ -103,7 +103,7 @@ namespace Insurance.Api.Services.Surcharge
 
             var surchargeRateByType = await _surchargeRateRepository.GetByProductTypeIdAsync(request.ProductTypeId);
             if (surchargeRateByType != null && surchargeRateByType.Id != surchargeRate.Id)
-                throw new BadRequestException($"Surcharge rate with productType id {request.ProductTypeId} already exists");
+                throw new BadRequestException($"Surcharge rate with ProductTypeId {request.ProductTypeId} already exists");
 
             surchargeRate.Name = request.Name;
             surchargeRate.Rate = request.Rate;
