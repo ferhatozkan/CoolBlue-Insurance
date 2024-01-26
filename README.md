@@ -32,6 +32,21 @@ It includes the assignment done for the case created by CoolBlue. CoolBlue has w
 4. Set the right *"Product Information API"* url in appsettings.json
 
 5. And start the project! It will open a browser window displaying the Swagger UI
+
+Option 2:
+
+1. Clone the repository
+
+2. Make sure you are on the main branch and check out if necessary
+
+3. Open terminal on directory
+
+4. Run code below to run integration tests
+```
+docker-compose up integration-tests 
+```
+5. This will also start Insurance Api (http://localhost:8081) and  
+Product Api (http://localhost:8080)
   
 ## Used Technologies
 
