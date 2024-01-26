@@ -26,7 +26,7 @@ namespace Insurance.Tests.Controllers
         [Fact]
         public async Task GivenCalculateInsuranceSuccessfully_ShouldReturn200StatusCode()
         {
-            var insurance = new InsuranceDto
+            var insurance = new ProductInsuranceDto
             {
                 ProductId = 1,
                 InsuranceCost = 100
@@ -38,7 +38,7 @@ namespace Insurance.Tests.Controllers
             var result = await _insuranceController.CalculateInsurance(1);
 
             var okObjectResult = Assert.IsType<OkObjectResult>(result);
-            var response = Assert.IsType<InsuranceDto>(okObjectResult.Value);
+            var response = Assert.IsType<ProductInsuranceDto>(okObjectResult.Value);
 
             Assert.Equal(1, response.ProductId);
             Assert.Equal(100, response.InsuranceCost);

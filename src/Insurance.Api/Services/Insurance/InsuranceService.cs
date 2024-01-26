@@ -3,6 +3,7 @@ using Insurance.Api.Constants;
 using Insurance.Api.Models.Dto;
 using Insurance.Api.Models.Request;
 using Insurance.Api.Repository;
+using Insurance.Api.Services.Chain;
 using Insurance.Api.Services.Insurance.Models;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,24 +16,32 @@ namespace Insurance.Api.Services.Insurance
     public class InsuranceService : IInsuranceService
     {
         private readonly IProductApiClient _productApiClient;
-        private readonly ISurchargeRateRepository _surchargeRateRepository;
         private readonly ILogger<InsuranceService> _logger;
+        private readonly IInsuranceChainService _insuranceChainService;
 
         public InsuranceService(
             IProductApiClient productApiClient,
-            ISurchargeRateRepository surchargeRateRepository,
-            ILogger<InsuranceService> logger)
+            ILogger<InsuranceService> logger,
+            IInsuranceChainService insuranceChainService)
         {
             _productApiClient = productApiClient;
-            _surchargeRateRepository = surchargeRateRepository;
             _logger = logger;
+            _insuranceChainService = insuranceChainService;
         }
 
-        public async Task<InsuranceDto> CalculateProductInsurance(int productId)
+        public async Task<ProductInsuranceDto> CalculateProductInsurance(int productId)
         {
             _logger.LogInformation($"CalculateProductInsurance was invoked with productId {productId} parameter on {DateTime.UtcNow}");
 
-            return await CalculateInsurance(productId);
+            var productInsurance = await CalculateInsurance(productId);
+
+            var productInsuranceDto = new ProductInsuranceDto
+            {
+                ProductId = productInsurance.ProductId,
+                InsuranceCost = productInsurance.InsuranceCost
+            };
+
+            return productInsuranceDto;
         }
 
         public async Task<CartInsuranceDto> CalculateCartInsurance(CartRequest cartRequest)
@@ -40,39 +49,39 @@ namespace Insurance.Api.Services.Insurance
             var productIds = cartRequest.CartItems.Select(ci => ci.ProductId);
             _logger.LogInformation($"CalculateCartInsurance was invoked with productIds {string.Join(",", productIds)} parameter on {DateTime.UtcNow}");
 
-            var insuranceDtos = new List<InsuranceDto>();
+            var itemInsuranceDtos = new List<InsuranceDto>();
             foreach (var item in cartRequest.CartItems)
             {
-                var insurace = await CalculateInsurance(item.ProductId);
-                insuranceDtos.Add(insurace);
+                var itemInsuranceDto = await CalculateInsurance(item.ProductId);
+                itemInsuranceDtos.Add(itemInsuranceDto);
             }
 
-            var sumInsurance = insuranceDtos.Sum(p => p.InsuranceCost);
+            var productInsuranceSum = itemInsuranceDtos.Sum(p => p.InsuranceCost);
 
-            _logger.LogInformation($"Products insurance cost was calculated {sumInsurance} for cart");
+            _logger.LogInformation($"Products insurance cost was calculated {productInsuranceSum} for cart");
 
-            var cartProductTypes = insuranceDtos.Select(p => p.ProductTypeId).Distinct().ToList();
-            var applyCartInsurance = ApplyCartInsurance(cartProductTypes);
+            var cartProductTypes = itemInsuranceDtos.Select(p => p.ProductTypeId).Distinct().ToList();
+            var cartInsurance = ApplyCartInsurance(cartProductTypes);
 
-            _logger.LogInformation($"Frequenly Lost Product Insurance cost was calculated {applyCartInsurance} for cart");
+            _logger.LogInformation($"Frequenly Lost Product Insurance cost was calculated {cartInsurance} for cart");
 
-            var totalInsuranceCost = sumInsurance + applyCartInsurance;
+            var totalInsuranceCost = productInsuranceSum + cartInsurance;
 
             _logger.LogInformation($"Total Insurance Cost was calculated {totalInsuranceCost} for cart");
 
-            var cartInsuraceItems = insuranceDtos.Select(insurance => new CartInsuranceItemDto
+            var cartInsuraceItems = itemInsuranceDtos.Select(insurance => new CartInsuranceItemDto
             {
                 ProductId = insurance.ProductId,
                 InsuranceCost = insurance.InsuranceCost
             }).ToList();
 
-            var cartInsurance = new CartInsuranceDto
+            var cartInsuranceDto = new CartInsuranceDto
             {
                 TotalInsuranceCost = totalInsuranceCost,
                 CartInsuranceItems = cartInsuraceItems
             };
 
-            return cartInsurance;
+            return cartInsuranceDto;
         }
 
         private double ApplyCartInsurance(List<int> cartProductTypes)
@@ -89,67 +98,23 @@ namespace Insurance.Api.Services.Insurance
         private async Task<InsuranceDto> CalculateInsurance(int productId)
         {
             var product = await _productApiClient.GetProduct(productId);
-            var productType = await _productApiClient.GetProductType(product.ProductTypeId);
 
-            if (!productType.CanBeInsured)
+            var productInsuranceDto = _insuranceChainService.Handle(new ProductInsuranceChainDto
             {
-                return new InsuranceDto
-                {
-                    ProductId = productId,
-                    InsuranceCost = 0,
-                    ProductTypeId = productType.Id
-                };
-            }
-
-            double insuranceValue = 0;
-            foreach (var rule in InsuranceRuleConstants.ProductInsuranceRules)
-            {
-                insuranceValue += CalculateInsuranceRule(rule, product.SalesPrice);
-            };
-
-            _logger.LogInformation($"Sales price range rule insurance cost was calculated {insuranceValue} for product {productId}");
-
-            if (Enum.IsDefined(typeof(SpecialProductType), productType.Id)) 
-            {
-                var specialProductInsuranceCost = 500;
-
-                insuranceValue += specialProductInsuranceCost;
-
-                _logger.LogInformation($"Special product type rule insurance cost was calculated {specialProductInsuranceCost} for product {productId} and productTypeId {productType.Id}");
-            }
-
-            var surcharge = await _surchargeRateRepository.GetByProductTypeIdAsync(productType.Id);
-            if (surcharge != null)
-            {
-                var surchargeCost = product.SalesPrice * ((double)surcharge.Rate / 100);
-
-                insuranceValue += surchargeCost;
-
-                _logger.LogInformation($"Surcharge cost was calculated {surchargeCost} for product {productId} and productTypeId {productType.Id}");
-            }
+                InsuranceCost = 0,
+                ProductId = product.Id,
+                ProductTypeId = product.ProductTypeId,
+                SalesPrice = product.SalesPrice
+            });
 
             var insurance = new InsuranceDto()
             {
                 ProductId = productId,
-                InsuranceCost = insuranceValue,
-                ProductTypeId = productType.Id
+                InsuranceCost = productInsuranceDto.InsuranceCost,
+                ProductTypeId = productInsuranceDto.ProductTypeId
             };
 
             return insurance;
-        }
-
-        private double CalculateInsuranceRule(ProductInsuranceRule rule, double salesPrice)
-        {
-            if (rule.MaxSalesPrice == null && rule.MinSalesPrice == null)
-                return 0;
-
-            if ((rule.MaxSalesPrice == null || salesPrice < rule.MaxSalesPrice)
-                && (rule.MinSalesPrice == null || salesPrice >= rule.MinSalesPrice))
-            {
-                return rule.InsurancePrice;
-            }
-
-            return 0;
         }
     }
 }
