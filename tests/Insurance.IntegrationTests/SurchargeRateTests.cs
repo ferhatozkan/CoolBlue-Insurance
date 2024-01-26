@@ -65,7 +65,7 @@ namespace Insurance.IntegrationTests
                 secondSurchargeCreateResponse
             };
 
-            Thread.Sleep(100);
+            Thread.Sleep(200);
             var getAllResponse = await SendAsync(HttpMethod.Get, $"api/surcharge-rates");
 
             Assert.NotNull(getAllResponse);
@@ -92,7 +92,7 @@ namespace Insurance.IntegrationTests
             var surchargeRate = await CreateSurchargeRate(surchargeRule);
             SurchargeIds.Add(surchargeRate.Id);
 
-            Thread.Sleep(100);
+            Thread.Sleep(200);
             var getByIdResponse = await SendAsync(HttpMethod.Get, $"api/surcharge-rates/{surchargeRate.Id}");
 
             Assert.NotNull(getByIdResponse);
@@ -158,7 +158,7 @@ namespace Insurance.IntegrationTests
             var successCreateResponse = await CreateSurchargeRate(surchargeRule);
             SurchargeIds.Add(successCreateResponse.Id);
             
-            Thread.Sleep(10);
+            Thread.Sleep(200);
 
             var failedCreateResponse = await SendAsync(HttpMethod.Post, $"api/surcharge-rates", surchargeRule);
 
