@@ -4,9 +4,9 @@ namespace Insurance.Api.Presentation.Models.Responses
 {
     public class ErrorMessageResponse
     {
-        public List<ErrorMessage> ErrorMessages { get; }
+        public List<ErrorMessage> ErrorMessages { get; set; }
 
-        private ErrorMessageResponse(List<ErrorMessage> errorMessages)
+        public ErrorMessageResponse(List<ErrorMessage> errorMessages)
         {
             ErrorMessages = errorMessages;
         }

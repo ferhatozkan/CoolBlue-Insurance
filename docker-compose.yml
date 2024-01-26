@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  app:
+  insuranceapi:
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -25,3 +25,22 @@ services:
     entrypoint: [ 'dotnet', './ProductData.Api/ProductData.Api.dll' ]
     environment:
       "ASPNETCORE_URLS": "http://+:80"
+
+  integration-tests:
+    container_name: integration-test
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    volumes:
+      - .:/src
+      - .:/tests
+    working_dir: /tests
+    environment:
+      "API_URL": "http://insuranceapi"
+    depends_on:
+        - insuranceapi
+        - productapi 
+    command:
+     [
+     "dotnet",
+        "test",
+        "./tests/Insurance.IntegrationTests"
+     ]
