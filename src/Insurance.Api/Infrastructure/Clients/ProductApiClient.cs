@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Insurance.Api.Application.Clients;
 using Insurance.Api.Application.Exceptions;
+using Insurance.Api.Application.Extensions;
 using Insurance.Api.Infrastructure.Clients.Configuration;
 using Insurance.Api.Infrastructure.Clients.Models;
 using Microsoft.Extensions.Options;
@@ -28,7 +28,7 @@ namespace Insurance.Api.Infrastructure.Clients
                 throw new NotFoundException($"Product Type with id {productTypeId} not found");
             }
 
-            var productTypeDto = JsonSerializer.Deserialize<ProductType>(await response.Content.ReadAsStringAsync());
+            var productTypeDto = JsonHelper.DeserializeCaseInsensitive<ProductType>(await response.Content.ReadAsStringAsync());
 
             return productTypeDto;
         }
@@ -42,7 +42,7 @@ namespace Insurance.Api.Infrastructure.Clients
                 throw new NotFoundException($"Product with id {productId} not found");
             }
 
-            var productDto = JsonSerializer.Deserialize<Product>(await response.Content.ReadAsStringAsync());
+            var productDto = JsonHelper.DeserializeCaseInsensitive<Product>(await response.Content.ReadAsStringAsync());
 
             return productDto;
         }

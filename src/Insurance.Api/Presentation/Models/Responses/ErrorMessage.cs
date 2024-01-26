@@ -1,4 +1,6 @@
-﻿namespace Insurance.Api.Presentation.Models.Responses
+﻿using System.Text.Json.Serialization;
+
+namespace Insurance.Api.Presentation.Models.Responses
 {
-    public record ErrorMessage(string Message);
+    public record ErrorMessage([property: JsonPropertyName("message")] string Message);
 }
