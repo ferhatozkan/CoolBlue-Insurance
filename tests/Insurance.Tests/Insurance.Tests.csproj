@@ -17,5 +17,11 @@
     <ProjectReference Include="..\..\src\Insurance.Api\Insurance.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Presentation\" />
+  </ItemGroup>
+
 </Project>
 
