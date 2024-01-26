@@ -1,6 +1,7 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Constants;
 using Insurance.Api.Models.Dto;
+using Insurance.Api.Models.Request;
 using Insurance.Api.Repository;
 using Insurance.Api.Services.Insurance.Models;
 using Microsoft.Extensions.Logging;
@@ -34,29 +35,42 @@ namespace Insurance.Api.Services.Insurance
             return await CalculateInsurance(productId);
         }
 
-        public async Task<CartInsuranceDto> CalculateCartInsurance(List<int> productIds)
+        public async Task<CartInsuranceDto> CalculateCartInsurance(CartRequest cartRequest)
         {
+            var productIds = cartRequest.CartItems.Select(ci => ci.ProductId);
             _logger.LogInformation($"CalculateCartInsurance was invoked with productIds {string.Join(",", productIds)} parameter on {DateTime.UtcNow}");
 
-            var cartInsurance = new CartInsuranceDto();
-            foreach (var productId in productIds)
+            var insuranceDtos = new List<InsuranceDto>();
+            foreach (var item in cartRequest.CartItems)
             {
-                var insurace = await CalculateInsurance(productId);
-                cartInsurance.Products.Add(insurace);
+                var insurace = await CalculateInsurance(item.ProductId);
+                insuranceDtos.Add(insurace);
             }
 
-            var productsInsurance = cartInsurance.Products.Sum(i => i.InsuranceCost);
+            var sumInsurance = insuranceDtos.Sum(p => p.InsuranceCost);
 
-            _logger.LogInformation($"Products insurance cost was calculated {productsInsurance} for cart");
+            _logger.LogInformation($"Products insurance cost was calculated {sumInsurance} for cart");
 
-            var cartProductTypes = cartInsurance.Products.Select(p => p.ProductTypeId).Distinct().ToList();
-            var frequenlyLostProductsInsurance = ApplyCartInsurance(cartProductTypes);
+            var cartProductTypes = insuranceDtos.Select(p => p.ProductTypeId).Distinct().ToList();
+            var applyCartInsurance = ApplyCartInsurance(cartProductTypes);
 
-            _logger.LogInformation($"Frequenly Lost Product Insurance cost was calculated {frequenlyLostProductsInsurance} for cart");
+            _logger.LogInformation($"Frequenly Lost Product Insurance cost was calculated {applyCartInsurance} for cart");
 
-            cartInsurance.TotalInsuranceCost = productsInsurance + frequenlyLostProductsInsurance;
+            var totalInsuranceCost = sumInsurance + applyCartInsurance;
 
-            _logger.LogInformation($"Total Insurance Cost was calculated {cartInsurance.TotalInsuranceCost} for cart");
+            _logger.LogInformation($"Total Insurance Cost was calculated {totalInsuranceCost} for cart");
+
+            var cartInsuraceItems = insuranceDtos.Select(insurance => new CartInsuranceItemDto
+            {
+                ProductId = insurance.ProductId,
+                InsuranceCost = insurance.InsuranceCost
+            }).ToList();
+
+            var cartInsurance = new CartInsuranceDto
+            {
+                TotalInsuranceCost = totalInsuranceCost,
+                CartInsuranceItems = cartInsuraceItems
+            };
 
             return cartInsurance;
         }

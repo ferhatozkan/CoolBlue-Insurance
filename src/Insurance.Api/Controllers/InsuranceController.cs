@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Insurance.Api.Models.Request;
 using Insurance.Api.Services.Insurance;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,9 +27,9 @@ namespace Insurance.Api.Controllers
         }
 
         [HttpPost("product")]
-        public async Task<ActionResult> CalculateCartInsurance(List<int> productIds)
+        public async Task<ActionResult> CalculateCartInsurance(CartRequest cartRequest)
         {
-            var cartInsurance = await _insuranceService.CalculateCartInsurance(productIds);
+            var cartInsurance = await _insuranceService.CalculateCartInsurance(cartRequest);
 
             return Ok(cartInsurance);
         }

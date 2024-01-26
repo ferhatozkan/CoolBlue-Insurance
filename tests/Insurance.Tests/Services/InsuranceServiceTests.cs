@@ -1,6 +1,7 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Clients.Models;
 using Insurance.Api.Models.Entities;
+using Insurance.Api.Models.Request;
 using Insurance.Api.Repository;
 using Insurance.Api.Services.Insurance;
 using Microsoft.Extensions.Logging;
@@ -26,7 +27,7 @@ namespace Insurance.Tests.Services
             _surchargeRateRepository = new Mock<ISurchargeRateRepository>();
 
             _insuranceService = new InsuranceService(
-                _productApiClient.Object, 
+                _productApiClient.Object,
                 _surchargeRateRepository.Object,
                 Mock.Of<ILogger<InsuranceService>>());
         }
@@ -154,7 +155,12 @@ namespace Insurance.Tests.Services
                     .Returns(Task.FromResult(productType));
             }
 
-            var result = await _insuranceService.CalculateCartInsurance(products.Select(p => p.Id).ToList());
+            var cartItems = products.Select(p => new CartItem
+            {
+                ProductId = p.Id
+            }).ToList();
+
+            var result = await _insuranceService.CalculateCartInsurance(new CartRequest { CartItems = cartItems });
 
             Assert.NotNull(result);
             Assert.Equal(expected: expectedCartInsurance, result.TotalInsuranceCost);
@@ -166,8 +172,18 @@ namespace Insurance.Tests.Services
             _productApiClient.Setup(client => client.GetProduct(It.IsAny<int>()))
                 .ThrowsAsync(new Exception());
 
-            var productIds = new List<int> { 1, 2 };
-            await Assert.ThrowsAsync<Exception>(async () => await _insuranceService.CalculateCartInsurance(productIds));
+            var cartRequest = new CartRequest
+            {
+                CartItems = new List<CartItem>
+                {
+                    new CartItem
+                    {
+                        ProductId = 1
+                    }
+                }
+            };
+
+            await Assert.ThrowsAsync<Exception>(async () => await _insuranceService.CalculateCartInsurance(cartRequest));
         }
 
         [Fact]
@@ -187,8 +203,18 @@ namespace Insurance.Tests.Services
             _productApiClient.Setup(client => client.GetProductType(It.IsAny<int>()))
                 .ThrowsAsync(new Exception());
 
-            var productIds = new List<int> { 1, 2 };
-            await Assert.ThrowsAsync<Exception>(async () => await _insuranceService.CalculateCartInsurance(productIds));
+            var cartRequest = new CartRequest
+            {
+                CartItems = new List<CartItem>
+                {
+                    new CartItem
+                    {
+                        ProductId = product.Id
+                    }
+                }
+            };
+
+            await Assert.ThrowsAsync<Exception>(async () => await _insuranceService.CalculateCartInsurance(cartRequest));
         }
 
         private Dictionary<string, Tuple<ProductDto, ProductTypeDto>> GetProduct()
