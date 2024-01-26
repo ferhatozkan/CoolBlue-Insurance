@@ -58,27 +58,25 @@ namespace Insurance.Api.Services.Insurance
 
             var productInsuranceSum = itemInsuranceDtos.Sum(p => p.InsuranceCost);
 
-            _logger.LogInformation($"Products insurance cost was calculated {productInsuranceSum} for cart");
+            _logger.LogInformation($"Products insurance cost was calculated {productInsuranceSum} Euros");
 
             var cartProductTypes = itemInsuranceDtos.Select(p => p.ProductTypeId).Distinct().ToList();
             var cartInsurance = ApplyCartInsurance(cartProductTypes);
 
-            _logger.LogInformation($"Frequenly Lost Product Insurance cost was calculated {cartInsurance} for cart");
+            _logger.LogInformation($"Cart insurance cost was calculated {cartInsurance} Euros");
 
             var totalInsuranceCost = productInsuranceSum + cartInsurance;
 
-            _logger.LogInformation($"Total Insurance Cost was calculated {totalInsuranceCost} for cart");
-
-            var cartInsuraceItems = itemInsuranceDtos.Select(insurance => new CartInsuranceItemDto
-            {
-                ProductId = insurance.ProductId,
-                InsuranceCost = insurance.InsuranceCost
-            }).ToList();
+            _logger.LogInformation($"Total cart insurance cost was calculated {totalInsuranceCost} Euros");
 
             var cartInsuranceDto = new CartInsuranceDto
             {
                 TotalInsuranceCost = totalInsuranceCost,
-                CartInsuranceItems = cartInsuraceItems
+                CartInsuranceItems = itemInsuranceDtos.Select(insurance => new CartInsuranceItemDto
+                {
+                    ProductId = insurance.ProductId,
+                    InsuranceCost = insurance.InsuranceCost
+                }).ToList()
             };
 
             return cartInsuranceDto;
