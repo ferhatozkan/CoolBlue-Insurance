@@ -1,9 +1,9 @@
 ﻿using Insurance.Api.Clients;
 using Insurance.Api.Clients.Models;
-using Insurance.Api.Models;
 using Insurance.Api.Models.Entities;
 using Insurance.Api.Repository;
 using Insurance.Api.Services.Insurance;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -19,11 +19,16 @@ namespace Insurance.Tests.Services
         private Mock<IProductApiClient> _productApiClient;
         private Mock<ISurchargeRateRepository> _surchargeRateRepository;
         private InsuranceService _insuranceService;
+
         public InsuranceServiceTests()
         {
             _productApiClient = new Mock<IProductApiClient>();
             _surchargeRateRepository = new Mock<ISurchargeRateRepository>();
-            _insuranceService = new InsuranceService(_productApiClient.Object, _surchargeRateRepository.Object);
+
+            _insuranceService = new InsuranceService(
+                _productApiClient.Object, 
+                _surchargeRateRepository.Object,
+                Mock.Of<ILogger<InsuranceService>>());
         }
 
         [Theory]

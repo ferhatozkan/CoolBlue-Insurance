@@ -7,6 +7,7 @@ using Xunit;
 using Insurance.Api.Models.Entities;
 using System.Collections.Generic;
 using Insurance.Api.Models.Request;
+using Microsoft.Extensions.Logging;
 
 namespace Insurance.Tests.Services
 {
@@ -18,7 +19,7 @@ namespace Insurance.Tests.Services
         public SurchargeRateServiceTests()
         {
             _surchargeRateRepository = new Mock<ISurchargeRateRepository>();
-            _surchargeRateService = new SurchargeRateService(_surchargeRateRepository.Object);
+            _surchargeRateService = new SurchargeRateService(_surchargeRateRepository.Object, Mock.Of<ILogger<SurchargeRateService>>());
         }
 
         [Fact]
