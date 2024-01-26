@@ -31,7 +31,7 @@ namespace Insurance.Api.Services.Insurance
 
         public async Task<ProductInsuranceDto> CalculateProductInsurance(int productId)
         {
-            _logger.LogInformation($"CalculateProductInsurance was invoked with productId {productId} parameter on {DateTime.UtcNow}");
+            _logger.LogInformation($"CalculateProductInsurance was invoked with productId {productId} on {DateTime.UtcNow}");
 
             var productInsurance = await CalculateInsurance(productId);
 
@@ -47,7 +47,7 @@ namespace Insurance.Api.Services.Insurance
         public async Task<CartInsuranceDto> CalculateCartInsurance(CartRequest cartRequest)
         {
             var productIds = cartRequest.CartItems.Select(ci => ci.ProductId);
-            _logger.LogInformation($"CalculateCartInsurance was invoked with productIds {string.Join(",", productIds)} parameter on {DateTime.UtcNow}");
+            _logger.LogInformation($"CalculateCartInsurance was invoked with productIds {string.Join(",", productIds)} on {DateTime.UtcNow}");
 
             var itemInsuranceDtos = new List<InsuranceDto>();
             foreach (var item in cartRequest.CartItems)
